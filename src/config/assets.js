@@ -17,7 +17,9 @@ export const assets = {
     iguanodon: '/src/assets/Dino/Iguanodon12.png',
     spinosaurus: '/src/assets/Dino/Spinosaurus2.png',
     stegosaurus: '/src/assets/Dino/StegosaurusT.png',
-    triceratops: '/src/assets/Dino/Triceratops.png'
+    triceratops: '/src/assets/Dino/Triceratops.png',
+    velociraptor: '/src/assets/Dino/Velociraptor.png',
+    pterodactyl: '/src/assets/Dino/Petrodactyl.png'
   },
   icons: {
     // SVG icons - these are included in the assets folder
