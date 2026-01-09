@@ -1,3 +1,6 @@
+/* Import design token CSS variables */
+@import './tokens/css-variables.css';
+
 * {
   margin: 0;
   padding: 0;
