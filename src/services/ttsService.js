@@ -1,192 +1,67 @@
 /**
  * Text-to-Speech Service
- * Provides natural, kid-friendly text-to-speech using Web Speech API
- * with intelligent voice selection and optimized parameters
+ * Provides natural, kid-friendly text-to-speech using edge-tts backend service
+ * with high-quality neural voices optimized for children's learning
  */
+
+// Backend API configuration
+const TTS_BACKEND_URL = import.meta.env.VITE_TTS_BACKEND_URL || 'http://localhost:8000'
+
+// Voice configuration mapping (backend will handle voice selection, but we keep this for reference)
+const VOICE_CONFIG = {
+  'en-US': 'en-US-AnaNeural',  // Child-friendly English
+  'zh-CN': 'zh-CN-XiaoYiNeural', // Lively, kid-friendly Chinese
+  'zh-TW': 'zh-TW-HsiaoYuNeural', // Friendly Taiwanese Mandarin
+}
 
 class TTSService {
   constructor() {
-    this.voices = []
-    this.voiceCache = new Map() // Cache selected voices by language
-    this.isInitialized = false
-    this.currentUtterance = null
     this.speechSequence = []
     this.currentSequenceIndex = 0
     this.onSequenceEnd = null
     this.onSequenceError = null
     this.onPlayingStateChange = null
+    this.currentAudio = null
+    this.currentUtterance = null // For Web Speech API fallback
+    this.isInitialized = true // Always initialized (no voice loading needed)
+    this.audioCache = new Map() // Cache audio URLs by text+lang+params
+    this.backendAvailable = true // Track backend availability
+    this.useFallback = false // Use Web Speech API fallback
+    this.maxRetries = 2 // Maximum retry attempts
+    this.retryDelay = 1000 // Delay between retries (ms)
   }
 
   /**
-   * Initialize voices - call this once on app startup
-   * Voices may not be immediately available, so we handle async loading
+   * Initialize service - maintained for API compatibility
+   * @returns {Promise}
    */
   initializeVoices() {
-    if (this.isInitialized) {
-      return Promise.resolve()
-    }
-
-    // Check if Web Speech API is available
-    if (!('speechSynthesis' in window)) {
-      console.warn('Web Speech API is not available in this browser')
-      return Promise.reject(new Error('Speech synthesis not supported'))
-    }
-
-    return new Promise((resolve) => {
-      // Get voices synchronously first (may be empty)
-      this.voices = window.speechSynthesis.getVoices()
-
-      if (this.voices.length > 0) {
-        this.isInitialized = true
-        resolve()
-      } else {
-        // Voices load asynchronously - wait for them
-        const onVoicesChanged = () => {
-          this.voices = window.speechSynthesis.getVoices()
-          if (this.voices.length > 0) {
-            window.speechSynthesis.onvoiceschanged = null
-            this.isInitialized = true
-            resolve()
-          }
-        }
-
-        window.speechSynthesis.onvoiceschanged = onVoicesChanged
-
-        // Fallback timeout in case voices never load
-        setTimeout(() => {
-          if (!this.isInitialized && this.voices.length === 0) {
-            console.warn('Voices did not load within timeout, continuing with default')
-            this.isInitialized = true
-            resolve()
-          }
-        }, 3000)
-      }
-    })
+    // No initialization needed for backend service
+    return Promise.resolve()
   }
 
   /**
-   * Check if a voice name matches kid-friendly patterns
-   * @param {string} voiceName - Name of the voice
-   * @returns {boolean}
+   * Convert rate, pitch, volume to edge-tts format
+   * @param {number} rate - Speech rate (0.5 to 2.0, where 1.0 is normal)
+   * @param {number} pitch - Pitch multiplier (0.5 to 2.0, where 1.0 is normal)
+   * @param {number} volume - Volume (0.0 to 1.0)
+   * @returns {Object} Formatted parameters
    */
-  isKidFriendlyVoice(voiceName) {
-    const name = voiceName.toLowerCase()
-    const kidFriendlyPatterns = [
-      'child', 'kid', 'young', 'friendly', 'warm',
-      'samantha', 'karen', 'susan', 'zira', 'hazel',
-      'ting-ting', 'sin-ji', 'mei-jia', 'xiaoxiao', 'xiaoyan'
-    ]
-    return kidFriendlyPatterns.some(pattern => name.includes(pattern))
-  }
-
-  /**
-   * Check if a voice is female (for kid-friendly selection)
-   * @param {SpeechSynthesisVoice} voice
-   * @returns {boolean}
-   */
-  isFemaleVoice(voice) {
-    const name = voice.name.toLowerCase()
-    // Common female voice name patterns
-    const femalePatterns = [
-      'samantha', 'karen', 'susan', 'zira', 'hazel', 'victoria',
-      'ting-ting', 'sin-ji', 'mei-jia', 'xiaoxiao', 'xiaoyan', 
-      'yuna', 'sora', 'hiromi', 'maria', 'monica', 'linda'
-    ]
-    return femalePatterns.some(pattern => name.includes(pattern))
-  }
-
-  /**
-   * Get the best voice for a given language
-   * @param {string} lang - Language code (e.g., 'en-US', 'zh-CN')
-   * @param {Object} preferences - Voice preferences
-   * @returns {SpeechSynthesisVoice|null}
-   */
-  getBestVoice(lang, preferences = {}) {
-    if (!this.isInitialized || this.voices.length === 0) {
-      // Return null if voices aren't loaded - caller should handle fallback
-      return null
-    }
-
-    // Check cache first
-    if (this.voiceCache.has(lang)) {
-      return this.voiceCache.get(lang)
-    }
-
-    // Filter voices by language
-    const langVoices = this.voices.filter(voice => {
-      // Check if voice supports the language
-      return voice.lang.startsWith(lang.split('-')[0]) || 
-             voice.lang === lang ||
-             (lang.startsWith('en') && voice.lang.startsWith('en')) ||
-             (lang.startsWith('zh') && voice.lang.startsWith('zh'))
-    })
-
-    if (langVoices.length === 0) {
-      // Fallback: try to find any voice with matching primary language
-      const primaryLang = lang.split('-')[0]
-      const fallbackVoices = this.voices.filter(voice => 
-        voice.lang.startsWith(primaryLang)
-      )
-      if (fallbackVoices.length > 0) {
-        const selected = fallbackVoices[0]
-        this.voiceCache.set(lang, selected)
-        return selected
-      }
-      return null
-    }
-
-    // Priority order for kid-friendly selection:
-    // 1. Kid-friendly AND female voices
-    // 2. Female voices
-    // 3. Kid-friendly voices
-    // 4. Default/local voices
-    // 5. Any available voice
-
-    let selectedVoice = null
-
-    // Try kid-friendly + female
-    selectedVoice = langVoices.find(voice => 
-      this.isKidFriendlyVoice(voice.name) && this.isFemaleVoice(voice)
-    )
-    if (selectedVoice) {
-      this.voiceCache.set(lang, selectedVoice)
-      console.log(`Selected kid-friendly female voice for ${lang}:`, selectedVoice.name)
-      return selectedVoice
-    }
-
-    // Try female voices
-    selectedVoice = langVoices.find(voice => this.isFemaleVoice(voice))
-    if (selectedVoice) {
-      this.voiceCache.set(lang, selectedVoice)
-      console.log(`Selected female voice for ${lang}:`, selectedVoice.name)
-      return selectedVoice
-    }
-
-    // Try kid-friendly voices
-    selectedVoice = langVoices.find(voice => this.isKidFriendlyVoice(voice.name))
-    if (selectedVoice) {
-      this.voiceCache.set(lang, selectedVoice)
-      console.log(`Selected kid-friendly voice for ${lang}:`, selectedVoice.name)
-      return selectedVoice
-    }
-
-    // Try default/local voices (usually better quality)
-    selectedVoice = langVoices.find(voice => voice.default || voice.localService)
-    if (selectedVoice) {
-      this.voiceCache.set(lang, selectedVoice)
-      console.log(`Selected default/local voice for ${lang}:`, selectedVoice.name)
-      return selectedVoice
-    }
-
-    // Fallback to first available
-    selectedVoice = langVoices[0]
-    if (selectedVoice) {
-      this.voiceCache.set(lang, selectedVoice)
-      console.log(`Using fallback voice for ${lang}:`, selectedVoice.name)
-      return selectedVoice
-    }
-
-    return null
+  formatTTSParams(rate, pitch, volume) {
+    // Convert rate: 0.8 -> -20%, 1.0 -> +0%, 1.2 -> +20%
+    const ratePercent = Math.round((rate - 1.0) * 100)
+    const rateStr = ratePercent >= 0 ? `+${ratePercent}%` : `${ratePercent}%`
+    
+    // Convert pitch: 1.0 -> +0Hz, 1.15 -> +15Hz (approximate)
+    // Note: edge-tts pitch is in Hz, we approximate based on multiplier
+    const pitchHz = Math.round((pitch - 1.0) * 20) // Rough conversion
+    const pitchStr = pitchHz >= 0 ? `+${pitchHz}Hz` : `${pitchHz}Hz`
+    
+    // Convert volume: 0.95 -> +0% (edge-tts volume is relative)
+    const volumePercent = Math.round((volume - 1.0) * 100)
+    const volumeStr = volumePercent >= 0 ? `+${volumePercent}%` : `${volumePercent}%`
+    
+    return { rate: rateStr, pitch: pitchStr, volume: volumeStr }
   }
 
   /**
@@ -222,6 +97,154 @@ class TTSService {
   }
 
   /**
+   * Fetch audio from backend TTS service with retry logic
+   * @param {string} text - Text to convert to speech
+   * @param {string} lang - Language code
+   * @param {Object} params - Speech parameters (rate, pitch, volume)
+   * @param {number} retryCount - Current retry attempt
+   * @returns {Promise<string>} Audio URL
+   */
+  async fetchAudioFromBackend(text, lang, params = {}, retryCount = 0) {
+    const cacheKey = `${text}|${lang}|${JSON.stringify(params)}`
+    
+    // Check cache first
+    if (this.audioCache.has(cacheKey)) {
+      return this.audioCache.get(cacheKey)
+    }
+
+    // If backend is known to be unavailable, skip to fallback
+    if (!this.backendAvailable && retryCount === 0) {
+      throw new Error('Backend unavailable, using fallback')
+    }
+
+    try {
+      const ttsParams = this.formatTTSParams(
+        params.rate || 1.0,
+        params.pitch || 1.0,
+        params.volume || 1.0
+      )
+
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
+      const response = await fetch(`${TTS_BACKEND_URL}/tts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: text,
+          lang: lang,
+          rate: ttsParams.rate,
+          pitch: ttsParams.pitch,
+          volume: ttsParams.volume,
+        }),
+        signal: controller.signal,
+      })
+
+      clearTimeout(timeoutId)
+
+      if (!response.ok) {
+        throw new Error(`TTS request failed: ${response.status} ${response.statusText}`)
+      }
+
+      const audioBlob = await response.blob()
+      
+      // Cache the blob URL
+      const audioUrl = URL.createObjectURL(audioBlob)
+      this.audioCache.set(cacheKey, audioUrl)
+      
+      // Mark backend as available
+      this.backendAvailable = true
+      
+      return audioUrl
+    } catch (error) {
+      // Retry logic
+      if (retryCount < this.maxRetries && !error.message.includes('aborted')) {
+        console.warn(`TTS request failed, retrying (${retryCount + 1}/${this.maxRetries})...`)
+        await new Promise(resolve => setTimeout(resolve, this.retryDelay))
+        return this.fetchAudioFromBackend(text, lang, params, retryCount + 1)
+      }
+      
+      // Mark backend as unavailable after max retries
+      if (retryCount >= this.maxRetries) {
+        this.backendAvailable = false
+        console.warn('TTS backend unavailable, will use fallback for future requests')
+      }
+      
+      throw error
+    }
+  }
+
+  /**
+   * Fallback to Web Speech API
+   * @param {string} text - Text to speak
+   * @param {string} lang - Language code
+   * @param {Object} params - Speech parameters
+   * @returns {Promise} Resolves when speech completes
+   */
+  speakWithWebSpeechAPI(text, lang, params) {
+    return new Promise((resolve, reject) => {
+      if (!('speechSynthesis' in window)) {
+        reject(new Error('Web Speech API not available'))
+        return
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text)
+      utterance.lang = lang
+      utterance.rate = params.rate || 1.0
+      utterance.pitch = params.pitch || 1.0
+      utterance.volume = params.volume || 1.0
+
+      utterance.onend = () => {
+        this.currentUtterance = null
+        resolve()
+      }
+
+      utterance.onerror = (error) => {
+        this.currentUtterance = null
+        reject(error)
+      }
+
+      this.currentUtterance = utterance
+      window.speechSynthesis.speak(utterance)
+    })
+  }
+
+  /**
+   * Play audio from URL
+   * @param {string} audioUrl - URL to audio file
+   * @returns {Promise} Resolves when audio finishes playing
+   */
+  playAudio(audioUrl) {
+    return new Promise((resolve, reject) => {
+      const audio = new Audio(audioUrl)
+      this.currentAudio = audio
+
+      audio.onended = () => {
+        this.currentAudio = null
+        resolve()
+      }
+
+      audio.onerror = (error) => {
+        this.currentAudio = null
+        reject(new Error('Audio playback failed'))
+      }
+
+      audio.onabort = () => {
+        this.currentAudio = null
+        reject(new Error('Audio playback aborted'))
+      }
+
+      // Start playing
+      audio.play().catch((error) => {
+        this.currentAudio = null
+        reject(error)
+      })
+    })
+  }
+
+  /**
    * Speak a sequence of text items with pauses
    * @param {Array<Object>} items - Array of speech items with text, lang, and optional overrides
    * @param {Object} callbacks - Callback functions
@@ -230,16 +253,6 @@ class TTSService {
    * @param {Function} callbacks.onPlayingStateChange - Called when playing state changes
    */
   speakSequence(items, callbacks = {}) {
-    if (!('speechSynthesis' in window)) {
-      const error = new Error('Your browser does not support text-to-speech. Please use a modern browser.')
-      if (callbacks.onError) {
-        callbacks.onError(error)
-      } else {
-        alert(error.message)
-      }
-      return
-    }
-
     // Stop any current speech
     this.stop()
 
@@ -260,7 +273,7 @@ class TTSService {
    * Speak the next item in the sequence
    * @private
    */
-  speakNext() {
+  async speakNext() {
     if (this.currentSequenceIndex >= this.speechSequence.length) {
       // Sequence complete
       if (this.onSequenceEnd) {
@@ -269,15 +282,12 @@ class TTSService {
       if (this.onPlayingStateChange) {
         this.onPlayingStateChange(false)
       }
-      this.currentUtterance = null
+      this.currentAudio = null
       return
     }
 
     const item = this.speechSequence[this.currentSequenceIndex]
     const lang = item.lang || 'en-US'
-    
-    // Get voice for this language
-    const voice = this.getBestVoice(lang)
     
     // Get kid-friendly parameters, with item overrides
     const baseParams = this.getKidFriendlyParams(lang)
@@ -288,54 +298,65 @@ class TTSService {
       volume: item.volume !== undefined ? item.volume : baseParams.volume,
     }
 
-    // Create utterance
-    const utterance = new SpeechSynthesisUtterance(item.text)
-    utterance.lang = lang
-    
-    if (voice) {
-      utterance.voice = voice
-    }
-    
-    utterance.rate = params.rate
-    utterance.pitch = params.pitch
-    utterance.volume = params.volume
-
-    // Handle utterance end
-    utterance.onend = () => {
+    try {
+      // Try to fetch audio from backend
+      const audioUrl = await this.fetchAudioFromBackend(item.text, lang, params)
+      
+      // Play audio
+      await this.playAudio(audioUrl)
+      
+      // Handle pause between items
       const pause = item.pause || 600
-      setTimeout(() => {
+      if (pause > 0) {
+        await new Promise(resolve => setTimeout(resolve, pause))
+      }
+      
+      // Move to next item
+      this.currentSequenceIndex++
+      this.speakNext()
+    } catch (error) {
+      // Fallback to Web Speech API if backend fails
+      console.warn('Backend TTS failed, falling back to Web Speech API:', error)
+      
+      try {
+        await this.speakWithWebSpeechAPI(item.text, lang, params)
+        
+        // Handle pause between items
+        const pause = item.pause || 600
+        if (pause > 0) {
+          await new Promise(resolve => setTimeout(resolve, pause))
+        }
+        
+        // Move to next item
         this.currentSequenceIndex++
         this.speakNext()
-      }, pause)
-    }
-
-    // Handle errors
-    utterance.onerror = (error) => {
-      console.error('Speech synthesis error:', error)
-      if (this.onSequenceError) {
-        this.onSequenceError(error)
+      } catch (fallbackError) {
+        console.error('Both backend and Web Speech API failed:', fallbackError)
+        if (this.onSequenceError) {
+          this.onSequenceError(fallbackError)
+        }
+        if (this.onPlayingStateChange) {
+          this.onPlayingStateChange(false)
+        }
+        this.currentAudio = null
+        this.currentUtterance = null
       }
-      if (this.onPlayingStateChange) {
-        this.onPlayingStateChange(false)
-      }
-      this.currentUtterance = null
     }
-
-    // Store current utterance
-    this.currentUtterance = utterance
-    
-    // Speak
-    window.speechSynthesis.speak(utterance)
   }
 
   /**
    * Stop current speech
    */
   stop() {
-    if (window.speechSynthesis) {
-      window.speechSynthesis.cancel()
+    if (this.currentAudio) {
+      this.currentAudio.pause()
+      this.currentAudio.currentTime = 0
+      this.currentAudio = null
     }
-    this.currentUtterance = null
+    if (window.speechSynthesis && this.currentUtterance) {
+      window.speechSynthesis.cancel()
+      this.currentUtterance = null
+    }
     this.speechSequence = []
     this.currentSequenceIndex = 0
     if (this.onPlayingStateChange) {
@@ -348,7 +369,22 @@ class TTSService {
    * @returns {boolean}
    */
   isSpeaking() {
-    return window.speechSynthesis?.speaking || false
+    const audioPlaying = this.currentAudio !== null && !this.currentAudio.paused
+    const speechPlaying = window.speechSynthesis?.speaking || false
+    return audioPlaying || speechPlaying
+  }
+
+  /**
+   * Clear audio cache (useful for memory management)
+   */
+  clearCache() {
+    // Revoke all object URLs
+    this.audioCache.forEach(url => {
+      if (url.startsWith('blob:')) {
+        URL.revokeObjectURL(url)
+      }
+    })
+    this.audioCache.clear()
   }
 }
 
@@ -356,4 +392,3 @@ class TTSService {
 const ttsService = new TTSService()
 
 export default ttsService
-
