@@ -1,23 +1,41 @@
 {
   "colors": {
+    "text": {
+      "primary": "#161616",
+      "placeholder": "#a8a8a8",
+      "onColor": "#ffffff"
+    },
     "background": {
       "primary": "#21272a",
-      "searchBar": "#4d5358"
+      "searchBar": "#4d5358",
+      "card": "#ffffff",
+      "light": "#f2f4f8"
     },
     "dino": {
       "blue1": "#00a3fe",
       "pink": "#fba7b4",
-      "yellow": "#fac042"
+      "yellow": "#fac042",
+      "purple": "#aa80ff",
+      "green": "#067f56",
+      "red": "#ff3825",
+      "orange": "#ff6d1a",
+      "navy": "#314ccd",
+      "mint": "#c4dad8"
     },
-    "text": {
-      "primary": "#ffffff",
-      "placeholder": "#a8a8a8"
+    "coolGray": {
+      "10": "#f2f4f8",
+      "70": "#4d5358",
+      "90": "#21272a"
+    },
+    "inverse": {
+      "white": "#ffffff",
+      "black": "#000000"
+    },
+    "accessibility": {
+      "white": "#FFFFFF"
     },
     "icon": {
       "onColor": "#FFFFFF"
-    },
-    "coolGray": {
-      "70": "#4d5358"
     }
   },
   "typography": {
@@ -29,6 +47,14 @@
       "lineHeight": 28,
       "letterSpacing": 0
     },
+    "heading04": {
+      "family": "IBM Plex Sans",
+      "style": "Regular",
+      "size": 28,
+      "weight": 400,
+      "lineHeight": 36,
+      "letterSpacing": 0
+    },
     "heading05": {
       "family": "IBM Plex Sans",
       "style": "SemiBold",
@@ -36,6 +62,14 @@
       "weight": 600,
       "lineHeight": 40,
       "letterSpacing": 0
+    },
+    "headingCompact01": {
+      "family": "IBM Plex Sans",
+      "style": "SemiBold",
+      "size": 14,
+      "weight": 600,
+      "lineHeight": 18,
+      "letterSpacing": 0.16
     },
     "bodyCompact02": {
       "family": "IBM Plex Sans",
@@ -47,13 +81,19 @@
     }
   },
   "spacing": {
+    "spacing03": "8px",
     "spacing05": "16px",
     "spacing06": "24px",
-    "paragraphSpacing": "0px"
+    "spacing07": "32px",
+    "paragraphSpacing": {
+      "heading05": "0px",
+      "display03": "0px"
+    }
   },
   "radius": {
     "small": "4px",
     "medium": "16px",
+    "large": "32px",
     "cover": "2.962px"
   },
   "dimensions": {
@@ -61,16 +101,24 @@
       "height": "60px"
     },
     "card": {
-      "height": "108px",
+      "height": "300px",
+      "setHeight": "108px",
       "imageSize": "96.268px",
-      "imageContainerSize": "130.195px"
+      "imageContainerSize": "130.195px",
+      "imageAspectRatio": "84.2679/80.7821",
+      "contentWidth": "265px",
+      "imageWidth": "120px"
+    },
+    "cardFull": {
+      "aspectRatio": "896/1344"
     },
     "header": {
       "height": "104px"
     },
     "icon": {
       "size": "28px",
-      "searchSize": "40px"
+      "searchSize": "40px",
+      "buttonSize": "48px"
     }
   },
   "transforms": {
@@ -79,11 +127,35 @@
   },
   "layout": {
     "containerWidth": "428px",
+    "cardSetWidth": "385px",
     "cardContentWidth": "265px",
     "cardImageWidth": "120px",
     "searchBarWidth": "385px"
   },
   "opacity": {
     "searchBar": 0.6
+  },
+  "cardSets": {
+    "availableColors": [
+      "Blue",
+      "Pink",
+      "Yellow",
+      "Purple",
+      "Green",
+      "Red",
+      "Orange",
+      "Navy",
+      "Mint"
+    ]
+  },
+  "cardTypes": {
+    "front": "Front",
+    "back": "Back"
+  },
+  "componentStates": {
+    "default": "Default",
+    "active": "Active",
+    "hover": "Hover",
+    "disabled": "Disabled"
   }
 }
