@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getImageUrl } from '../config/assets'
 import { getDinoColor } from '../tokens'
 import './CardSet.css'
@@ -12,6 +13,8 @@ import './CardSet.css'
  * @param {string} props.image - Image key for the set image
  */
 const CardSet = ({ title = 'SetName', subtitle = '10 cards', color = 'Blue', image }) => {
+  const navigate = useNavigate()
+  
   // Map image filenames to asset keys
   const imageKeyMap = {
     'dinosaur.png': 'dinosaur',
@@ -25,10 +28,22 @@ const CardSet = ({ title = 'SetName', subtitle = '10 cards', color = 'Blue', ima
   // Get background color from tokens
   const backgroundColor = getDinoColor(color)
 
+  // Convert title to route-friendly ID
+  const getRouteId = (title) => {
+    return title.toLowerCase().replace(/\s+/g, '-')
+  }
+
+  const handleClick = () => {
+    const routeId = getRouteId(title)
+    navigate(`/card-set/${routeId}`)
+  }
+
   return (
-    <div 
+    <button
       className="card-set" 
       style={{ backgroundColor }}
+      onClick={handleClick}
+      type="button"
     >
       <div className="card-set-container">
         <div className="card-title-container">
@@ -59,7 +74,7 @@ const CardSet = ({ title = 'SetName', subtitle = '10 cards', color = 'Blue', ima
           </div>
         </div>
       </div>
-    </div>
+    </button>
   )
 }
 

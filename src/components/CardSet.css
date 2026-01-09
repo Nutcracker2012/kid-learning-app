@@ -7,6 +7,10 @@
   border-radius: var(--radius-small);
   width: var(--layout-card-set-width);
   flex-shrink: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
 }
 
 .card-set-container {

@@ -19,7 +19,8 @@ export const assets = {
     // Icon assets from Figma
     soundButton: 'http://localhost:3845/assets/a9f1006f91452d12f65312cc836fd21a5b74a1b9.svg',
     volumeUp: 'http://localhost:3845/assets/103c3cd39192edf96037acca1b494c428aa6f973.svg',
-    chevronRight: 'http://localhost:3845/assets/768dc5aa18a36a5f4fed35b595fc18e21645969e.svg'
+    chevronRight: 'http://localhost:3845/assets/768dc5aa18a36a5f4fed35b595fc18e21645969e.svg',
+    arrowLeft: 'http://localhost:3845/assets/04824bebc15d0010e9c748cd85bd6116add0bbf5.svg'
   }
 }
 

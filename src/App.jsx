@@ -1,20 +1,17 @@
 import React from 'react'
-import Header from './components/Header'
-import SearchBar from './components/SearchBar'
-import CardList from './components/CardList'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import CardDetail from './pages/CardDetail'
 import './App.css'
 
 function App() {
   return (
-    <div className="app">
-      <div className="app-container">
-        <Header />
-        <div className="content-section">
-          <SearchBar />
-          <CardList />
-        </div>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/card-set/:setId" element={<CardDetail />} />
+      </Routes>
+    </Router>
   )
 }
 
