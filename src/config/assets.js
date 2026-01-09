@@ -8,9 +8,16 @@ export const assets = {
     dinosaur: 'http://localhost:3845/assets/42e5cde04cc7830675286332b11936e0942d4b3e.png',
     fruit: 'http://localhost:3845/assets/3686c17a808316e2ccb0ceb2c089eb6b0f57587d.png',
     animals: 'http://localhost:3845/assets/ef10cddaf399b44e34e96632c14935c90efa8169.png',
-    // Card full images
-    tyrannosaurusRex: 'http://localhost:3845/assets/3f2fa0bc13917a29216760503470d239af2c3547.png',
-    tyrannosaurusRex2: 'http://localhost:3845/assets/979106f33ee442f6264b0d1ecf0624aa098b25c2.png'
+    // Card full images - using local Dino folder images
+    tyrannosaurusRex: '/src/assets/Dino/Tyrannosaurus Rex.png',
+    allosaurus: '/src/assets/Dino/Allosaurus2.png',
+    ankylosaurus: '/src/assets/Dino/Ankylosaurus.png',
+    brachiosaurus: '/src/assets/Dino/Brachiosaurus2.png',
+    diplodocus: '/src/assets/Dino/Diplodocus.png',
+    iguanodon: '/src/assets/Dino/Iguanodon12.png',
+    spinosaurus: '/src/assets/Dino/Spinosaurus2.png',
+    stegosaurus: '/src/assets/Dino/StegosaurusT.png',
+    triceratops: '/src/assets/Dino/Triceratops.png'
   },
   icons: {
     // SVG icons - these are included in the assets folder

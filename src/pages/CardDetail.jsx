@@ -13,16 +13,16 @@ const cardSets = {
     cardCount: 10,
     description: 'A set of learning cards designed to help children recognize and remember different dinosaurs with pictures and simple facts.',
     cards: [
-      { id: 1, name: 'Tyrannosaurus Rex', image: 'tyrannosaurusRex2' },
-      { id: 2, name: 'Triceratops', image: 'tyrannosaurusRex' },
-      { id: 3, name: 'Brachiosaurus', image: 'tyrannosaurusRex2' },
-      { id: 4, name: 'Stegosaurus', image: 'tyrannosaurusRex' },
-      { id: 5, name: 'Velociraptor', image: 'tyrannosaurusRex2' },
+      { id: 1, name: 'Tyrannosaurus Rex', image: 'tyrannosaurusRex' },
+      { id: 2, name: 'Triceratops', image: 'triceratops' },
+      { id: 3, name: 'Brachiosaurus', image: 'brachiosaurus' },
+      { id: 4, name: 'Stegosaurus', image: 'stegosaurus' },
+      { id: 5, name: 'Velociraptor', image: 'tyrannosaurusRex' },
       { id: 6, name: 'Pterodactyl', image: 'tyrannosaurusRex' },
-      { id: 7, name: 'Spinosaurus', image: 'tyrannosaurusRex2' },
-      { id: 8, name: 'Ankylosaurus', image: 'tyrannosaurusRex' },
-      { id: 9, name: 'Diplodocus', image: 'tyrannosaurusRex2' },
-      { id: 10, name: 'Allosaurus', image: 'tyrannosaurusRex' }
+      { id: 7, name: 'Spinosaurus', image: 'spinosaurus' },
+      { id: 8, name: 'Ankylosaurus', image: 'ankylosaurus' },
+      { id: 9, name: 'Diplodocus', image: 'diplodocus' },
+      { id: 10, name: 'Allosaurus', image: 'allosaurus' }
     ]
   },
   'fruit': {
