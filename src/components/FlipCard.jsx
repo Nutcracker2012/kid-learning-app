@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getImageUrl, getIconUrl } from '../config/assets'
 import { getCardDataByImage } from '../config/cardData'
+import ttsService from '../services/ttsService'
 import './FlipCard.css'
 
 /**
@@ -47,8 +48,6 @@ const FlipCard = ({
 }) => {
   const [isFlipped, setIsFlipped] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const speechSynthesisRef = useRef(null)
-  const currentUtteranceRef = useRef(null)
 
   const imageSrc = getImageUrl(image)
   const soundButtonIcon = getIconUrl('soundButton')
@@ -71,12 +70,16 @@ const FlipCard = ({
 
   const data = cardData || cardDataFromConfig || defaultCardData
 
-  // Clean up speech synthesis on unmount
+  // Initialize TTS service and clean up on unmount
   useEffect(() => {
+    // Initialize voices on component mount
+    ttsService.initializeVoices().catch((error) => {
+      console.warn('Failed to initialize TTS voices:', error)
+    })
+
+    // Clean up speech synthesis on unmount
     return () => {
-      if (currentUtteranceRef.current) {
-        window.speechSynthesis.cancel()
-      }
+      ttsService.stop()
     }
   }, [])
 
@@ -92,121 +95,102 @@ const FlipCard = ({
     e.stopPropagation()
     if (isPlaying) {
       // Stop current audio
-      window.speechSynthesis.cancel()
+      ttsService.stop()
       setIsPlaying(false)
-      currentUtteranceRef.current = null
     } else {
       playAudioSequence()
     }
   }
 
   const playAudioSequence = () => {
-    if (!('speechSynthesis' in window)) {
-      alert('Your browser does not support text-to-speech. Please use a modern browser.')
-      return
-    }
+    // Ensure voices are initialized
+    ttsService.initializeVoices().then(() => {
+      setIsPlaying(true)
 
-    setIsPlaying(true)
-    window.speechSynthesis.cancel()
-    currentUtteranceRef.current = null
+      // Audio sequence following exact requirements:
+      // 1. Say the object name in English
+      // 2. Translate the object name into Chinese and say it
+      // 3. Teach the child how to pronounce the English word, slowly and clearly
+      // 4. Explain how to recognize the object in a simple, kid-friendly way
+      // 5. End with a fun fact about the object
 
-    // Audio sequence following exact requirements:
-    // 1. Say the object name in English
-    // 2. Translate the object name into Chinese and say it
-    // 3. Teach the child how to pronounce the English word, slowly and clearly
-    // 4. Explain how to recognize the object in a simple, kid-friendly way
-    // 5. End with a fun fact about the object
-
-    const sequence = [
-      // Step 1: Say the object name in English
-      {
-        text: data.nameEnglish,
-        lang: 'en-US',
-        rate: 0.9,
-        pitch: 1.1,
-        pause: 800
-      },
-      // Step 2: Translate the object name into Chinese and say it
-      {
-        text: `中文是${data.nameChinese}。${data.nameChinese}。`,
-        lang: 'zh-CN',
-        rate: 0.85,
-        pitch: 1.0,
-        pause: 800
-      },
-      // Step 3: Teach the child how to pronounce the English word, slowly and clearly
-      {
-        text: `Let's learn how to say ${data.nameEnglish}. Listen carefully: ${data.nameEnglish}. Say it with me: ${data.nameEnglish}. Great job!`,
-        lang: 'en-US',
-        rate: 0.7,
-        pitch: 1.1,
-        pause: 1000
-      },
-      // Step 4: Explain how to recognize the object in a simple, kid-friendly way
-      {
-        text: `Here's how you can recognize a ${data.nameEnglish}:`,
-        lang: 'en-US',
-        rate: 0.85,
-        pitch: 1.1,
-        pause: 600
-      },
-      ...data.recognitionFeatures.map((feature, index) => {
-        const parts = feature.split('–')
-        const label = parts[0].trim()
-        const description = parts[1]?.trim() || ''
-        return {
-          text: `${label}. ${description}`,
+      const sequence = [
+        // Step 1: Say the object name in English
+        {
+          text: data.nameEnglish,
+          lang: 'en-US',
+          rate: 0.8, // Use TTS service defaults but allow overrides
+          pitch: 1.15,
+          pause: 800
+        },
+        // Step 2: Translate the object name into Chinese and say it
+        {
+          text: `中文是${data.nameChinese}。${data.nameChinese}。`,
           lang: 'zh-CN',
-          rate: 0.8,
+          rate: 0.85,
           pitch: 1.0,
-          pause: index === data.recognitionFeatures.length - 1 ? 800 : 600
+          pause: 800
+        },
+        // Step 3: Teach the child how to pronounce the English word, slowly and clearly
+        {
+          text: `Let's learn how to say ${data.nameEnglish}. Listen carefully: ${data.nameEnglish}. Say it with me: ${data.nameEnglish}. Great job!`,
+          lang: 'en-US',
+          rate: 0.7, // Slower for teaching pronunciation
+          pitch: 1.15,
+          pause: 1000
+        },
+        // Step 4: Explain how to recognize the object in a simple, kid-friendly way
+        {
+          text: `Here's how you can recognize a ${data.nameEnglish}:`,
+          lang: 'en-US',
+          rate: 0.8,
+          pitch: 1.15,
+          pause: 600
+        },
+        ...data.recognitionFeatures.map((feature, index) => {
+          const parts = feature.split('–')
+          const label = parts[0].trim()
+          const description = parts[1]?.trim() || ''
+          return {
+            text: `${label}. ${description}`,
+            lang: 'zh-CN',
+            rate: 0.8,
+            pitch: 1.0,
+            pause: index === data.recognitionFeatures.length - 1 ? 800 : 600
+          }
+        }),
+        // Step 5: End with a fun fact about the object
+        {
+          text: `Here's a fun fact: ${data.funFact}`,
+          lang: 'zh-CN',
+          rate: 0.85,
+          pitch: 1.0,
+          pause: 0
         }
-      }),
-      // Step 5: End with a fun fact about the object
-      {
-        text: `Here's a fun fact: ${data.funFact}`,
-        lang: 'zh-CN',
-        rate: 0.85,
-        pitch: 1.0,
-        pause: 0
-      }
-    ]
+      ]
 
-    let currentIndex = 0
-
-    const speakNext = () => {
-      if (currentIndex >= sequence.length) {
-        setIsPlaying(false)
-        currentUtteranceRef.current = null
-        return
-      }
-
-      const item = sequence[currentIndex]
-      const utterance = new SpeechSynthesisUtterance(item.text)
-      utterance.lang = item.lang
-      utterance.rate = item.rate
-      utterance.pitch = item.pitch
-      utterance.volume = 1.0
-
-      utterance.onend = () => {
-        // Add pause between utterances
-        setTimeout(() => {
-          currentIndex++
-          speakNext()
-        }, item.pause || 500)
-      }
-
-      utterance.onerror = (error) => {
-        console.error('Speech synthesis error:', error)
-        setIsPlaying(false)
-        currentUtteranceRef.current = null
-      }
-
-      currentUtteranceRef.current = utterance
-      window.speechSynthesis.speak(utterance)
-    }
-
-    speakNext()
+      // Use TTS service to speak the sequence
+      ttsService.speakSequence(sequence, {
+        onEnd: () => {
+          setIsPlaying(false)
+        },
+        onError: (error) => {
+          console.error('TTS error:', error)
+          setIsPlaying(false)
+          // User-friendly error message
+          if (!error.message.includes('not support')) {
+            alert('There was an error playing the audio. Please try again.')
+          }
+        },
+        onPlayingStateChange: (isPlaying) => {
+          setIsPlaying(isPlaying)
+        }
+      })
+    }).catch((error) => {
+      console.error('Failed to initialize TTS:', error)
+      alert('Text-to-speech is not available. Please use a modern browser that supports speech synthesis.')
+      setIsPlaying(false)
+    })
   }
 
   // Format recognition features for display
