@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useParams } from 'react-router-dom'
 import DetailHeader from '../components/DetailHeader'
 import SearchBar from '../components/SearchBar'
-import CardStatus from '../components/CardStatus'
+import Card from '../components/Card'
 import './CardDetail.css'
 
 // Sample card data - in a real app this would come from an API or state management
@@ -65,81 +65,16 @@ const cardSets = {
 
 const CardDetail = () => {
   const { setId } = useParams()
-  const navigate = useNavigate()
   
   // Convert route param to lowercase to match cardSets keys
   // Handle both hyphenated and non-hyphenated IDs
   const setIdLower = setId?.toLowerCase() || 'dinosaur'
   const cardSet = cardSets[setIdLower] || cardSets['dinosaur']
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [touchStart, setTouchStart] = useState(null)
-  const [touchEnd, setTouchEnd] = useState(null)
-
-  // Minimum swipe distance (in pixels)
-  const minSwipeDistance = 50
-
-  const onTouchStart = (e) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
-  }
-
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX)
-  }
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-
-    const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > minSwipeDistance
-    const isRightSwipe = distance < -minSwipeDistance
-
-    if (isLeftSwipe && currentIndex < cardSet.cards.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-    }
-    if (isRightSwipe && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-    }
-  }
-
-  const handleCardClick = (index) => {
-    if (index === currentIndex) {
-      // If clicking the active card, flip it (can be implemented later)
-      return
-    }
-    setCurrentIndex(index)
-  }
-
   const handleAddClick = () => {
     // Handle add card functionality
     console.log('Add card clicked')
   }
-
-  const handleSearch = () => {
-    // Handle search functionality
-    console.log('Search clicked')
-  }
-
-  // Get visible cards (current and next 2)
-  const getVisibleCards = () => {
-    const visible = []
-    const maxVisible = 3
-    
-    for (let i = 0; i < maxVisible; i++) {
-      const index = currentIndex + i
-      if (index < cardSet.cards.length) {
-        visible.push({
-          ...cardSet.cards[index],
-          index,
-          isActive: i === 0
-        })
-      }
-    }
-    return visible
-  }
-
-  const visibleCards = getVisibleCards()
 
   return (
     <div className="card-detail">
@@ -156,29 +91,14 @@ const CardDetail = () => {
             </div>
           </div>
           <SearchBar />
-          <div 
-            className="card-detail-cards-container"
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
-            {visibleCards.map((card, i) => (
-              <div
+          <div className="card-detail-cards-container">
+            {cardSet.cards.map((card) => (
+              <Card
                 key={card.id}
-                className={`card-detail-card-wrapper ${card.isActive ? 'card-active' : 'card-inactive'}`}
-                style={{
-                  zIndex: cardSet.cards.length - card.index,
-                  transform: `translateY(${i * -280}px)`
-                }}
-                onClick={() => handleCardClick(card.index)}
-              >
-                <CardStatus
-                  status={card.isActive}
-                  name={card.name}
-                  image={card.image}
-                  onClick={() => handleCardClick(card.index)}
-                />
-              </div>
+                name={card.name}
+                property1="Front"
+                image={card.image}
+              />
             ))}
           </div>
         </div>
