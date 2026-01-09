@@ -1,8 +1,17 @@
 import React from 'react'
 import { getImageUrl } from '../config/assets'
+import { getDinoColor } from '../tokens'
 import './CardSet.css'
 
-const CardSet = ({ title, subtitle, color, image }) => {
+/**
+ * CardSet Component
+ * @param {Object} props
+ * @param {string} props.title - Set name (e.g., "SetName")
+ * @param {string} props.subtitle - Card count (e.g., "10 cards")
+ * @param {string} props.color - Color variant: "Blue" | "Pink" | "Yellow" | "Purple" | "Green" | "Red" | "Orange" | "Navy" | "Mint"
+ * @param {string} props.image - Image key for the set image
+ */
+const CardSet = ({ title = 'SetName', subtitle = '10 cards', color = 'Blue', image }) => {
   // Map image filenames to asset keys
   const imageKeyMap = {
     'dinosaur.png': 'dinosaur',
@@ -13,8 +22,14 @@ const CardSet = ({ title, subtitle, color, image }) => {
   const imageKey = imageKeyMap[image] || image?.replace('.png', '')
   const imageSrc = imageKey ? getImageUrl(imageKey) : null
 
+  // Get background color from tokens
+  const backgroundColor = getDinoColor(color)
+
   return (
-    <div className={`card-set card-set-${color}`}>
+    <div 
+      className="card-set" 
+      style={{ backgroundColor }}
+    >
       <div className="card-set-container">
         <div className="card-title-container">
           <p className="card-title">{title}</p>
