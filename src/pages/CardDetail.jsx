@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import DetailHeader from '../components/DetailHeader'
 import SearchBar from '../components/SearchBar'
-import Card from '../components/Card'
+import FlipCard from '../components/FlipCard'
 import './CardDetail.css'
 
 // Sample card data - in a real app this would come from an API or state management
@@ -93,10 +93,9 @@ const CardDetail = () => {
           <SearchBar />
           <div className="card-detail-cards-container">
             {cardSet.cards.map((card) => (
-              <Card
+              <FlipCard
                 key={card.id}
                 name={card.name}
-                property1="Front"
                 image={card.image}
               />
             ))}

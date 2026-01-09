@@ -113,7 +113,8 @@
   display: none;
 }
 
-.card-detail-cards-container .card {
+.card-detail-cards-container .card,
+.card-detail-cards-container .flip-card-container {
   width: 100%;
   max-width: var(--layout-card-set-width);
   flex-shrink: 0;
