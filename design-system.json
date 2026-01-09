@@ -1,0 +1,89 @@
+{
+  "colors": {
+    "background": {
+      "primary": "#21272a",
+      "searchBar": "#4d5358"
+    },
+    "dino": {
+      "blue1": "#00a3fe",
+      "pink": "#fba7b4",
+      "yellow": "#fac042"
+    },
+    "text": {
+      "primary": "#ffffff",
+      "placeholder": "#a8a8a8"
+    },
+    "icon": {
+      "onColor": "#FFFFFF"
+    },
+    "coolGray": {
+      "70": "#4d5358"
+    }
+  },
+  "typography": {
+    "heading03": {
+      "family": "IBM Plex Sans",
+      "style": "Regular",
+      "size": 20,
+      "weight": 400,
+      "lineHeight": 28,
+      "letterSpacing": 0
+    },
+    "heading05": {
+      "family": "IBM Plex Sans",
+      "style": "SemiBold",
+      "size": 32,
+      "weight": 600,
+      "lineHeight": 40,
+      "letterSpacing": 0
+    },
+    "bodyCompact02": {
+      "family": "IBM Plex Sans",
+      "style": "Regular",
+      "size": 16,
+      "weight": 400,
+      "lineHeight": 22,
+      "letterSpacing": 0
+    }
+  },
+  "spacing": {
+    "spacing05": "16px",
+    "spacing06": "24px",
+    "paragraphSpacing": "0px"
+  },
+  "radius": {
+    "small": "4px",
+    "medium": "16px",
+    "cover": "2.962px"
+  },
+  "dimensions": {
+    "searchBar": {
+      "height": "60px"
+    },
+    "card": {
+      "height": "108px",
+      "imageSize": "96.268px",
+      "imageContainerSize": "130.195px"
+    },
+    "header": {
+      "height": "104px"
+    },
+    "icon": {
+      "size": "28px",
+      "searchSize": "40px"
+    }
+  },
+  "transforms": {
+    "cardRotation": "28deg",
+    "imageRotation": "2deg"
+  },
+  "layout": {
+    "containerWidth": "428px",
+    "cardContentWidth": "265px",
+    "cardImageWidth": "120px",
+    "searchBarWidth": "385px"
+  },
+  "opacity": {
+    "searchBar": 0.6
+  }
+}

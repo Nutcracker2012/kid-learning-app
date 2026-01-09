@@ -1,0 +1,17 @@
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+}
