@@ -125,7 +125,7 @@ const FlipCard = ({
         },
         // Step 2: Translate the object name into Chinese and say it
         {
-          text: `中文是${data.nameChinese}。${data.nameChinese}。`,
+          text: data.nameChinese,
           lang: 'zh-CN',
           rate: 0.85,
           pitch: 1.0,
@@ -133,20 +133,13 @@ const FlipCard = ({
         },
         // Step 3: Teach the child how to pronounce the English word, slowly and clearly
         {
-          text: `Let's learn how to say ${data.nameEnglish}. Listen carefully: ${data.nameEnglish}. Say it with me: ${data.nameEnglish}. Great job!`,
+          text: `${data.nameEnglish}. ${data.nameEnglish}.`,
           lang: 'en-US',
           rate: 0.7, // Slower for teaching pronunciation
           pitch: 1.15,
           pause: 1000
         },
         // Step 4: Explain how to recognize the object in a simple, kid-friendly way
-        {
-          text: `Here's how you can recognize a ${data.nameEnglish}:`,
-          lang: 'en-US',
-          rate: 0.8,
-          pitch: 1.15,
-          pause: 600
-        },
         ...data.recognitionFeatures.map((feature, index) => {
           const parts = feature.split('–')
           const label = parts[0].trim()
@@ -161,7 +154,7 @@ const FlipCard = ({
         }),
         // Step 5: End with a fun fact about the object
         {
-          text: `Here's a fun fact: ${data.funFact}`,
+          text: data.funFact,
           lang: 'zh-CN',
           rate: 0.85,
           pitch: 1.0,
