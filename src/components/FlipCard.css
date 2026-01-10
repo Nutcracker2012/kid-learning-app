@@ -283,7 +283,7 @@
 }
 
 .card-note-container {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 4px;
   align-items: flex-start;
@@ -295,7 +295,7 @@
 }
 
 .card-note-label {
-  display: none;
+  display: block;
   font-family: var(--typography-heading-compact-01-family);
   font-weight: var(--typography-heading-compact-01-weight);
   font-size: var(--typography-heading-compact-01-size);
@@ -303,6 +303,18 @@
   letter-spacing: var(--typography-heading-compact-01-letter-spacing);
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+.card-note-text {
+  font-family: var(--typography-body-compact-02-family), 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: var(--typography-body-compact-02-weight);
+  font-size: var(--typography-body-compact-02-size);
+  line-height: var(--typography-body-compact-02-line-height);
+  color: var(--color-inverse-black);
+  text-align: left;
+  width: 100%;
+  flex-shrink: 0;
+  min-height: 27px;
 }
 
 .card-recognition-features {

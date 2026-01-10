@@ -69,6 +69,7 @@ const FlipCard = ({
     nameEnglish: 'Tyrannosaurus Rex',
     nameChinese: '霸王龙',
     pronunciation: '/tɪˌrænəˈsɔːrəs rɛks/',
+    note: '大头 + 小手臂 + 巨牙 = 霸王龙',
     recognitionFeatures: [
       '大头与尖牙 – 巨大的头骨里有又长又尖的牙齿，用来吃肉',
       '小手臂 – 非常短的前臂，仅有两根手指',
@@ -269,10 +270,8 @@ const FlipCard = ({
               </div>
             </div>
             <div className="card-note-container">
-              <p className="card-note-label">识别特征:</p>
-              <div className="card-recognition-features">
-                {formatRecognitionFeatures()}
-              </div>
+              <p className="card-note-label">Note:</p>
+              <p className="card-note-text">{data.note || ''}</p>
             </div>
             <div className="card-fun-fact-container">
               <p className="card-fun-fact-label">趣味小知识:</p>

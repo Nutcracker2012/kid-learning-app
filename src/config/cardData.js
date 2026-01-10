@@ -6,6 +6,7 @@ export const cardData = {
     nameEnglish: 'Tyrannosaurus Rex',
     nameChinese: '霸王龙',
     pronunciation: '/tɪˌrænəˈsɔːrəs rɛks/',
+    note: '大头 + 小手臂 + 巨牙 = 霸王龙',
     recognitionFeatures: [
       '大头与尖牙 – 巨大的头骨里有又长又尖的牙齿，用来吃肉',
       '小手臂 – 非常短的前臂，仅有两根手指',
@@ -19,6 +20,7 @@ export const cardData = {
     nameEnglish: 'Triceratops',
     nameChinese: '三角龙',
     pronunciation: '/traɪˈsɛrəˌtɒps/',
+    note: '三个角 + 大颈盾 + 四条腿 = 三角龙',
     recognitionFeatures: [
       '三个角 – 头上有三个大角，两个在眼睛上方，一个在鼻子上',
       '大颈盾 – 脖子后面有一个像盾牌一样的大骨头板',
@@ -31,6 +33,7 @@ export const cardData = {
     nameEnglish: 'Brachiosaurus',
     nameChinese: '腕龙',
     pronunciation: '/ˌbrækiəˈsɔːrəs/',
+    note: '超长脖子 + 前腿长 + 大身体 = 腕龙',
     recognitionFeatures: [
       '超长脖子 – 脖子非常长，可以够到树顶的叶子',
       '前腿比后腿长 – 前腿比后腿长，身体向前倾斜',
@@ -43,6 +46,7 @@ export const cardData = {
     nameEnglish: 'Stegosaurus',
     nameChinese: '剑龙',
     pronunciation: '/ˌstɛɡəˈsɔːrəs/',
+    note: '背骨板 + 尾巴尖刺 + 小脑袋 = 剑龙',
     recognitionFeatures: [
       '背上的骨板 – 背上有一排像剑一样的骨板',
       '尾巴上的尖刺 – 尾巴末端有四根尖尖的刺',
@@ -55,6 +59,7 @@ export const cardData = {
     nameEnglish: 'Velociraptor',
     nameChinese: '迅猛龙',
     pronunciation: '/vəˈlɒsɪˌræptər/',
+    note: '锋利爪子 + 跑得快 + 有羽毛 = 迅猛龙',
     recognitionFeatures: [
       '锋利的爪子 – 后脚上有一个像镰刀一样的大爪子',
       '快速奔跑 – 跑得非常快，可以追捕猎物',
@@ -67,6 +72,7 @@ export const cardData = {
     nameEnglish: 'Pterodactyl',
     nameChinese: '翼龙',
     pronunciation: '/ˌtɛrəˈdæktɪl/',
+    note: '会飞 + 大翅膀 + 长嘴巴 = 翼龙',
     recognitionFeatures: [
       '会飞 – 是唯一会飞的恐龙',
       '大翅膀 – 翅膀由皮肤和肌肉组成，像蝙蝠一样',
@@ -79,6 +85,7 @@ export const cardData = {
     nameEnglish: 'Spinosaurus',
     nameChinese: '棘龙',
     pronunciation: '/ˌspaɪnəˈsɔːrəs/',
+    note: '背上帆 + 长嘴巴 + 会游泳 = 棘龙',
     recognitionFeatures: [
       '背上的帆 – 背上有一个像帆一样的大骨头结构',
       '长嘴巴 – 嘴巴又长又窄，像鳄鱼一样',
@@ -91,6 +98,7 @@ export const cardData = {
     nameEnglish: 'Ankylosaurus',
     nameChinese: '甲龙',
     pronunciation: '/æŋˌkaɪləˈsɔːrəs/',
+    note: '全身盔甲 + 尾巴锤子 + 低矮身体 = 甲龙',
     recognitionFeatures: [
       '全身盔甲 – 身体被厚厚的骨板保护，像坦克一样',
       '尾巴锤子 – 尾巴末端有一个大骨锤，可以击打敌人',
@@ -103,6 +111,7 @@ export const cardData = {
     nameEnglish: 'Diplodocus',
     nameChinese: '梁龙',
     pronunciation: '/dɪˈplɒdəkəs/',
+    note: '长脖子 + 长尾巴 + 细长身体 = 梁龙',
     recognitionFeatures: [
       '超长脖子和尾巴 – 脖子和尾巴都非常长',
       '细长身体 – 身体相对较细，但非常长',
@@ -115,6 +124,7 @@ export const cardData = {
     nameEnglish: 'Allosaurus',
     nameChinese: '异特龙',
     pronunciation: '/ˌæləˈsɔːrəs/',
+    note: '大嘴巴 + 强壮后腿 + 小前肢 = 异特龙',
     recognitionFeatures: [
       '大嘴巴 – 嘴巴很大，里面有很多锋利的牙齿',
       '强壮的后腿 – 后腿强壮，可以快速奔跑',
