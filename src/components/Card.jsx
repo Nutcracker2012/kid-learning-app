@@ -16,6 +16,16 @@ const VolumeUp = ({ className }) => {
   )
 }
 
+/**
+ * ChevronRight Icon Component
+ * Displays a right-pointing chevron icon using an SVG image
+ * 
+ * @param {Object} props
+ * @param {string} [props.className] - Additional CSS classes to apply to the icon container
+ * 
+ * @example
+ * <ChevronRight className="chevron-right-overlay" />
+ */
 const ChevronRight = ({ className }) => {
   const iconUrl = getIconUrl('chevronRight')
   return (

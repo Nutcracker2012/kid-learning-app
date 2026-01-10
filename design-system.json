@@ -82,6 +82,7 @@
   },
   "spacing": {
     "spacing03": "8px",
+    "spacing04": "12px",
     "spacing05": "16px",
     "spacing06": "24px",
     "spacing07": "32px",
@@ -94,7 +95,8 @@
     "small": "4px",
     "medium": "16px",
     "large": "32px",
-    "cover": "2.962px"
+    "cover": "2.962px",
+    "full": "9999px"
   },
   "dimensions": {
     "searchBar": {
@@ -118,7 +120,8 @@
     "icon": {
       "size": "28px",
       "searchSize": "40px",
-      "buttonSize": "48px"
+      "buttonSize": "48px",
+      "buttonIconSize": "24px"
     }
   },
   "transforms": {
@@ -169,7 +172,17 @@
           "border": "none",
           "background": "transparent",
           "cursor": "pointer",
-          "padding": "0"
+          "padding": "0",
+          "borderRadius": "9999px"
+        },
+        "background": {
+          "color": "#f2f4f8",
+          "padding": "12px"
+        },
+        "icon": {
+          "size": "24px",
+          "width": "50%",
+          "height": "50%"
         },
         "states": {
           "default": {
