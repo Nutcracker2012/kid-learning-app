@@ -18,6 +18,17 @@ const VolumeUp = ({ className }) => {
   )
 }
 
+const StopIcon = ({ className }) => {
+  const iconUrl = getIconUrl('stop')
+  return (
+    <div className={`volume-up-icon ${className || ''}`}>
+      <div className="volume-up-icon-vector">
+        {iconUrl && <img alt="" src={iconUrl} />}
+      </div>
+    </div>
+  )
+}
+
 const ChevronRight = ({ className }) => {
   const iconUrl = getIconUrl('chevronRight')
   return (
@@ -236,12 +247,16 @@ const FlipCard = ({
             <button 
               className={`flip-card-audio-button ${isPlaying ? 'playing' : ''}`}
               onClick={handleAudioClick}
-              aria-label="Play audio"
+              aria-label={isPlaying ? "Stop audio" : "Play audio"}
             >
               <div className="sound-button-background">
                 {soundButtonIcon && <img alt="" src={soundButtonIcon} />}
               </div>
-              <VolumeUp className="volume-up-overlay" />
+              {isPlaying ? (
+                <StopIcon className="volume-up-overlay" />
+              ) : (
+                <VolumeUp className="volume-up-overlay" />
+              )}
             </button>
             <div className="card-info-container">
               <div className="card-name-container">

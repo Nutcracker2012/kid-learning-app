@@ -3,6 +3,7 @@
 // Images can be downloaded from Figma or replaced with your own assets
 
 import volumeUpIcon from '../assets/icon/volume--up.svg'
+import stopIcon from '../assets/icon/Stop.svg'
 
 export const assets = {
   images: {
@@ -30,6 +31,7 @@ export const assets = {
     // Icon assets from Figma
     soundButton: 'http://localhost:3845/assets/a9f1006f91452d12f65312cc836fd21a5b74a1b9.svg',
     volumeUp: volumeUpIcon,
+    stop: stopIcon,
     chevronRight: '/src/assets/icon/Chevron Icon.svg',
     arrowLeft: 'http://localhost:3845/assets/04824bebc15d0010e9c748cd85bd6116add0bbf5.svg'
   }
