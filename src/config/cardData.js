@@ -132,6 +132,146 @@ export const cardData = {
       '捕食者 – 是凶猛的食肉恐龙'
     ],
     funFact: '异特龙是霸王龙的祖先，它们生活在更早的时代！'
+  },
+  apple: {
+    nameEnglish: 'Apple',
+    nameChinese: '苹果',
+    pronunciation: '/ˈæpəl/',
+    note: '圆形 + 红色/绿色 + 光滑表皮 = 苹果',
+    recognitionFeatures: [
+      '圆形或椭圆形 – 形状圆圆的，像一个小球',
+      '颜色多样 – 有红色、绿色、黄色等不同颜色',
+      '光滑的表皮 – 表面光滑，有光泽',
+      '顶部有茎 – 顶部有一个小小的茎',
+      '酸甜多汁 – 咬开里面是白色的果肉，又甜又多汁'
+    ],
+    funFact: '苹果有很多颜色，红色、绿色、黄色都有！每天吃一个苹果，可以让身体更健康哦！'
+  },
+  banana: {
+    nameEnglish: 'Banana',
+    nameChinese: '香蕉',
+    pronunciation: '/bəˈnænə/',
+    note: '弯弯的 + 黄色 + 长条形 = 香蕉',
+    recognitionFeatures: [
+      '弯弯的形状 – 像月亮一样弯弯的',
+      '黄色外皮 – 成熟时是黄色的，未成熟时是绿色的',
+      '长条形 – 形状长长的，像小船一样',
+      '软软的果肉 – 剥开皮后是白色软软的果肉',
+      '很甜 – 吃起来甜甜的，非常美味'
+    ],
+    funFact: '香蕉是长在树上的！一串香蕉上有很多根香蕉，它们是长在一起的兄弟姐妹哦！'
+  },
+  cherry: {
+    nameEnglish: 'Cherry',
+    nameChinese: '樱桃',
+    pronunciation: '/ˈtʃɛri/',
+    note: '小小圆球 + 红色 + 小茎 = 樱桃',
+    recognitionFeatures: [
+      '小小的圆形 – 很小很圆，像小珠子一样',
+      '鲜艳的红色 – 通常是红色的，非常漂亮',
+      '长长的茎 – 顶部有一根细细长长的茎',
+      '光滑的表皮 – 表面非常光滑，亮亮的',
+      '甜甜的味道 – 吃起来很甜，是夏天的美味水果'
+    ],
+    funFact: '樱桃很小，但是营养很丰富！而且樱桃树上会开很多粉色的花，非常漂亮！'
+  },
+  grape: {
+    nameEnglish: 'Grape',
+    nameChinese: '葡萄',
+    pronunciation: '/ɡreɪp/',
+    note: '小圆球 + 一串串 + 紫色/绿色 = 葡萄',
+    recognitionFeatures: [
+      '小圆球形状 – 每个葡萄都是小小的圆球',
+      '长成一串 – 很多颗葡萄长在一根茎上，像一串小珠子',
+      '颜色多样 – 有紫色、绿色、红色等不同颜色',
+      '光滑的表皮 – 表面很光滑，像玻璃珠一样',
+      '甜甜多汁 – 咬开里面有很多汁水，很甜很好吃'
+    ],
+    funFact: '葡萄可以用来做葡萄干！把新鲜葡萄晒干，就变成了甜甜的葡萄干啦！'
+  },
+  mango: {
+    nameEnglish: 'Mango',
+    nameChinese: '芒果',
+    pronunciation: '/ˈmæŋɡoʊ/',
+    note: '椭圆形 + 黄色/橙色 + 大果核 = 芒果',
+    recognitionFeatures: [
+      '椭圆形或肾形 – 形状像一个大鸡蛋或者一个肾脏',
+      '黄色或橙色 – 成熟的芒果是黄色或橙色的，非常鲜艳',
+      '光滑的表皮 – 表皮光滑，有些品种有斑点',
+      '大果核 – 中间有一个很大很扁的果核',
+      '香甜的果肉 – 果肉是黄色的，又香又甜又软'
+    ],
+    funFact: '芒果被称为"水果之王"！它有很多维生素，而且味道超级香甜，很多人都很喜欢吃！'
+  },
+  orange: {
+    nameEnglish: 'Orange',
+    nameChinese: '橙子',
+    pronunciation: '/ˈɔːrɪndʒ/',
+    note: '圆形 + 橙色 + 粗糙表皮 = 橙子',
+    recognitionFeatures: [
+      '圆圆的形状 – 像一个橙色的小球',
+      '鲜艳的橙色 – 表皮是橙色的，非常漂亮',
+      '粗糙的表皮 – 表面有点粗糙，不像苹果那么光滑',
+      '可以剥皮 – 可以用手把皮剥开，里面是一瓣一瓣的',
+      '酸甜多汁 – 吃起来酸酸甜甜的，有很多汁水'
+    ],
+    funFact: '橙子里面有很多维生素C，可以帮助我们保持健康，不容易感冒！而且橙子皮也可以做很多有趣的东西哦！'
+  },
+  peach: {
+    nameEnglish: 'Peach',
+    nameChinese: '桃子',
+    pronunciation: '/piːtʃ/',
+    note: '圆形 + 粉色/黄色 + 毛茸茸 = 桃子',
+    recognitionFeatures: [
+      '圆圆的形状 – 像一个小球，顶部有一个小尖尖',
+      '粉红色或黄色 – 通常是粉红色或黄粉色的，很漂亮',
+      '毛茸茸的表皮 – 表面有一层细细的绒毛',
+      '中间有核 – 最中间有一个大果核',
+      '香甜的果肉 – 果肉是白色或黄色的，又软又甜又多汁'
+    ],
+    funFact: '桃子是长在树上的！桃树春天会开粉色的花，非常漂亮，然后才长出桃子来！'
+  },
+  pineapple: {
+    nameEnglish: 'Pineapple',
+    nameChinese: '菠萝',
+    pronunciation: '/ˈpaɪnˌæpəl/',
+    note: '椭圆形 + 黄色 + 尖尖外皮 = 菠萝',
+    recognitionFeatures: [
+      '椭圆形 – 形状像一个大大的椭圆形',
+      '黄色果肉 – 外面是绿色，里面是黄色的果肉',
+      '尖尖的外皮 – 表面有很多尖尖的小叶子，像小刺一样',
+      '顶部有叶子 – 顶部有很多长长的绿色叶子',
+      '酸甜的味道 – 吃起来酸酸甜甜的，很特别'
+    ],
+    funFact: '菠萝外面看起来很硬，但里面是软软的黄色果肉！而且菠萝长在地上，不在树上哦！'
+  },
+  strawberry: {
+    nameEnglish: 'Strawberry',
+    nameChinese: '草莓',
+    pronunciation: '/ˈstrɔːˌbɛri/',
+    note: '心形 + 红色 + 小种子 = 草莓',
+    recognitionFeatures: [
+      '心形或三角形 – 形状像一个小爱心',
+      '鲜艳的红色 – 通常是红色的，有时候还有一点白色',
+      '小种子在外面 – 表面有很多小小的黄色或绿色的种子',
+      '绿色的小叶子 – 顶部有几片绿色的小叶子',
+      '酸甜的味道 – 吃起来酸酸甜甜的，非常好吃'
+    ],
+    funFact: '草莓的种子长在外面！那些小小的点点就是草莓的种子哦。而且草莓虽然叫"莓"，但它其实不是真正的莓果！'
+  },
+  watermelon: {
+    nameEnglish: 'Watermelon',
+    nameChinese: '西瓜',
+    pronunciation: '/ˈwɔːtərˌmɛlən/',
+    note: '大圆形 + 绿色条纹 + 红色果肉 = 西瓜',
+    recognitionFeatures: [
+      '大大的圆形或椭圆形 – 通常很大很圆，像一个大球',
+      '绿色条纹外皮 – 外面是绿色的，有深绿色和浅绿色的条纹',
+      '红色果肉 – 切开里面是红色的果肉，还有很多黑色的籽',
+      '很多水分 – 里面有很多很多的水，非常解渴',
+      '甜甜的味道 – 吃起来非常甜，是夏天最受欢迎的水果'
+    ],
+    funFact: '西瓜大部分都是水！一个西瓜里有90%以上都是水，所以它叫"西瓜"——因为水分像水一样多！'
   }
 }
 
@@ -162,7 +302,17 @@ export const getCardDataByImage = (imageKey) => {
     diplodocus: 'diplodocus',
     allosaurus: 'allosaurus',
     allosaurus2: 'allosaurus',
-    iguanodon: 'iguanodon'
+    iguanodon: 'iguanodon',
+    apple: 'apple',
+    banana: 'banana',
+    cherry: 'cherry',
+    grape: 'grape',
+    mango: 'mango',
+    orange: 'orange',
+    peach: 'peach',
+    pineapple: 'pineapple',
+    strawberry: 'strawberry',
+    watermelon: 'watermelon'
   }
   
   const cardKey = imageToCardMap[imageKey] || imageKey
