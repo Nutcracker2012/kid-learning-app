@@ -95,10 +95,15 @@
 }
 
 .card-flip-button {
-  position: relative;
-  width: var(--dimension-icon-button-size);
-  height: var(--dimension-icon-button-size);
-  flex-shrink: 0;
+  position: var(--component-button-icon-button-position);
+  width: var(--component-button-icon-button-width);
+  height: var(--component-button-icon-button-height);
+  flex-shrink: var(--component-button-icon-button-flex-shrink);
+  border: var(--component-button-icon-button-border);
+  background: var(--component-button-icon-button-background);
+  cursor: var(--component-button-icon-button-cursor);
+  padding: var(--component-button-icon-button-padding);
+  transition: var(--component-button-icon-button-transition);
   margin-left: auto;
 }
 
@@ -141,10 +146,14 @@
 }
 
 .card-sound-button {
-  position: relative;
-  width: var(--dimension-icon-button-size);
-  height: var(--dimension-icon-button-size);
-  flex-shrink: 0;
+  position: var(--component-button-icon-button-position);
+  width: var(--component-button-icon-button-width);
+  height: var(--component-button-icon-button-height);
+  flex-shrink: var(--component-button-icon-button-flex-shrink);
+  border: var(--component-button-icon-button-border);
+  background: var(--component-button-icon-button-background);
+  cursor: var(--component-button-icon-button-cursor);
+  padding: var(--component-button-icon-button-padding);
 }
 
 .sound-button-background {
@@ -247,7 +256,6 @@
 .volume-up-icon {
   width: 50%;
   height: 50%;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

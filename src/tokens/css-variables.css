@@ -138,4 +138,20 @@
 
   /* Opacity */
   --opacity-search-bar: 0.6;
+
+  /* Components - Button - Icon Button Base */
+  --component-button-icon-button-position: relative;
+  --component-button-icon-button-width: var(--dimension-icon-button-size);
+  --component-button-icon-button-height: var(--dimension-icon-button-size);
+  --component-button-icon-button-flex-shrink: 0;
+  --component-button-icon-button-border: none;
+  --component-button-icon-button-background: transparent;
+  --component-button-icon-button-cursor: pointer;
+  --component-button-icon-button-padding: 0;
+  --component-button-icon-button-transition: transform 0.2s ease;
+
+  /* Components - Button - Icon Button States */
+  --component-button-icon-button-hover-transform: scale(1.05);
+  --component-button-icon-button-active-transform: scale(1);
+  --component-button-icon-button-playing-animation: pulse 1.5s ease-in-out infinite;
 }

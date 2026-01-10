@@ -157,5 +157,35 @@
     "active": "Active",
     "hover": "Hover",
     "disabled": "Disabled"
+  },
+  "components": {
+    "button": {
+      "iconButton": {
+        "base": {
+          "position": "relative",
+          "width": "48px",
+          "height": "48px",
+          "flexShrink": "0",
+          "border": "none",
+          "background": "transparent",
+          "cursor": "pointer",
+          "padding": "0"
+        },
+        "states": {
+          "default": {
+            "transition": "transform 0.2s ease"
+          },
+          "hover": {
+            "transform": "scale(1.05)"
+          },
+          "active": {
+            "transform": "scale(1)"
+          },
+          "playing": {
+            "animation": "pulse 1.5s ease-in-out infinite"
+          }
+        }
+      }
+    }
   }
 }

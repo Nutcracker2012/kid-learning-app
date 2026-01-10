@@ -2,6 +2,8 @@
 // Replace these URLs with actual asset paths once images are downloaded from Figma
 // Images can be downloaded from Figma or replaced with your own assets
 
+import volumeUpIcon from '../assets/icon/volume--up.svg'
+
 export const assets = {
   images: {
     // Card images - replace with actual paths or use Figma localhost URLs
@@ -27,7 +29,7 @@ export const assets = {
     search: '/src/assets/search-icon.svg',
     // Icon assets from Figma
     soundButton: 'http://localhost:3845/assets/a9f1006f91452d12f65312cc836fd21a5b74a1b9.svg',
-    volumeUp: 'http://localhost:3845/assets/103c3cd39192edf96037acca1b494c428aa6f973.svg',
+    volumeUp: volumeUpIcon,
     chevronRight: '/src/assets/icon/Chevron Icon.svg',
     arrowLeft: 'http://localhost:3845/assets/04824bebc15d0010e9c748cd85bd6116add0bbf5.svg'
   }
