@@ -31,16 +31,16 @@ const cardSets = {
     cardCount: 10,
     description: 'Learn about different fruits with colorful pictures and fun facts.',
     cards: [
-      { id: 1, name: 'Apple', image: 'tyrannosaurusRex2' },
-      { id: 2, name: 'Banana', image: 'tyrannosaurusRex' },
-      { id: 3, name: 'Orange', image: 'tyrannosaurusRex2' },
-      { id: 4, name: 'Grape', image: 'tyrannosaurusRex' },
-      { id: 5, name: 'Strawberry', image: 'tyrannosaurusRex2' },
-      { id: 6, name: 'Pineapple', image: 'tyrannosaurusRex' },
-      { id: 7, name: 'Mango', image: 'tyrannosaurusRex2' },
-      { id: 8, name: 'Watermelon', image: 'tyrannosaurusRex' },
-      { id: 9, name: 'Cherry', image: 'tyrannosaurusRex2' },
-      { id: 10, name: 'Peach', image: 'tyrannosaurusRex' }
+      { id: 1, name: 'Apple', image: 'apple' },
+      { id: 2, name: 'Banana', image: 'banana' },
+      { id: 3, name: 'Orange', image: 'orange' },
+      { id: 4, name: 'Grape', image: 'grape' },
+      { id: 5, name: 'Strawberry', image: 'strawberry' },
+      { id: 6, name: 'Pineapple', image: 'pineapple' },
+      { id: 7, name: 'Mango', image: 'mango' },
+      { id: 8, name: 'Watermelon', image: 'watermelon' },
+      { id: 9, name: 'Cherry', image: 'cherry' },
+      { id: 10, name: 'Peach', image: 'peach' }
     ]
   },
   'animals': {

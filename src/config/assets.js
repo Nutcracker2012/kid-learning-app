@@ -22,7 +22,18 @@ export const assets = {
     stegosaurus: '/src/assets/Dino/StegosaurusT.png',
     triceratops: '/src/assets/Dino/Triceratops.png',
     velociraptor: '/src/assets/Dino/Velociraptor.png',
-    pterodactyl: '/src/assets/Dino/Petrodactyl.png'
+    pterodactyl: '/src/assets/Dino/Petrodactyl.png',
+    // Fruit images
+    apple: '/src/assets/fruit/Apple.png',
+    banana: '/src/assets/fruit/Banana.png',
+    cherry: '/src/assets/fruit/Cherry.png',
+    grape: '/src/assets/fruit/Grape.png',
+    mango: '/src/assets/fruit/Mango.png',
+    orange: '/src/assets/fruit/Orange.png',
+    peach: '/src/assets/fruit/Peach.png',
+    pineapple: '/src/assets/fruit/Pineapple.png',
+    strawberry: '/src/assets/fruit/Strawberry.png',
+    watermelon: '/src/assets/fruit/Watermelon.png'
   },
   icons: {
     // SVG icons - these are included in the assets folder
