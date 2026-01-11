@@ -54,7 +54,19 @@ export const assets = {
     peach: '/src/assets/fruit/Peach.png',
     pineapple: '/src/assets/fruit/Pineapple.png',
     strawberry: '/src/assets/fruit/Strawberry.png',
-    watermelon: '/src/assets/fruit/Watermelon.png'
+    watermelon: '/src/assets/fruit/Watermelon.png',
+    // Animal images
+    lion: '/src/assets/animals/Lion.png',
+    elephant: '/src/assets/animals/elephant.png',
+    tiger: '/src/assets/animals/Tiger.png',
+    giraffe: '/src/assets/animals/Giraffe.png',
+    monkey: '/src/assets/animals/Monkey.png',
+    zebra: '/src/assets/animals/Zebra.png',
+    bear: '/src/assets/animals/Bear.png',
+    panda: '/src/assets/animals/Panda.png',
+    kangaroo: '/src/assets/animals/Kangaroo.png',
+    penguin: '/src/assets/animals/Penguin.png',
+    flamingo: '/src/assets/animals/Flamingo.png'
   },
   icons: {
     // SVG icons - these are included in the assets folder

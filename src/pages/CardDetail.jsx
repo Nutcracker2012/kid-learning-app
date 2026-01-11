@@ -69,16 +69,16 @@ const cardSets = {
     cardCount: 10,
     description: 'Discover various animals from around the world.',
     cards: [
-      { id: 1, name: 'Lion', image: 'tyrannosaurusRex2' },
-      { id: 2, name: 'Elephant', image: 'tyrannosaurusRex' },
-      { id: 3, name: 'Tiger', image: 'tyrannosaurusRex2' },
-      { id: 4, name: 'Giraffe', image: 'tyrannosaurusRex' },
-      { id: 5, name: 'Monkey', image: 'tyrannosaurusRex2' },
-      { id: 6, name: 'Zebra', image: 'tyrannosaurusRex' },
-      { id: 7, name: 'Bear', image: 'tyrannosaurusRex2' },
-      { id: 8, name: 'Panda', image: 'tyrannosaurusRex' },
-      { id: 9, name: 'Kangaroo', image: 'tyrannosaurusRex2' },
-      { id: 10, name: 'Penguin', image: 'tyrannosaurusRex' }
+      { id: 1, name: 'Lion', image: 'lion' },
+      { id: 2, name: 'Elephant', image: 'elephant' },
+      { id: 3, name: 'Tiger', image: 'tiger' },
+      { id: 4, name: 'Giraffe', image: 'giraffe' },
+      { id: 5, name: 'Monkey', image: 'monkey' },
+      { id: 6, name: 'Zebra', image: 'zebra' },
+      { id: 7, name: 'Bear', image: 'bear' },
+      { id: 8, name: 'Panda', image: 'panda' },
+      { id: 9, name: 'Kangaroo', image: 'kangaroo' },
+      { id: 10, name: 'Penguin', image: 'penguin' }
     ]
   }
 }

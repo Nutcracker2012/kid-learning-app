@@ -545,6 +545,146 @@ export const cardData = {
       '甜甜的味道 – 吃起来非常甜，是夏天最受欢迎的水果'
     ],
     funFact: '西瓜大部分都是水！一个西瓜里有90%以上都是水，所以它叫"西瓜"——因为水分像水一样多！'
+  },
+  lion: {
+    nameEnglish: 'Lion',
+    nameChinese: '狮子',
+    pronunciation: '/ˈlaɪən/',
+    note: '大鬃毛 + 强壮身体 + 凶猛 = 狮子',
+    recognitionFeatures: [
+      '雄狮有鬃毛 – 雄性狮子脖子上有浓密的鬃毛，像围巾一样',
+      '强壮的身体 – 身体很强壮，肌肉发达',
+      '凶猛的面容 – 看起来很威武，是森林之王',
+      '尾巴有毛球 – 尾巴末端有一个小毛球',
+      '肉食动物 – 是大型食肉动物，会捕猎'
+    ],
+    funFact: '狮子是唯一一种雄性和雌性看起来不一样的猫科动物！雄狮有鬃毛，雌狮没有。狮子是群居动物，通常生活在一个群体里！'
+  },
+  elephant: {
+    nameEnglish: 'Elephant',
+    nameChinese: '大象',
+    pronunciation: '/ˈɛlɪfənt/',
+    note: '长鼻子 + 大耳朵 + 长牙 = 大象',
+    recognitionFeatures: [
+      '长长的鼻子 – 有一个又长又灵活的鼻子，可以用来抓东西、喝水、闻味道',
+      '大大的耳朵 – 耳朵非常大，像扇子一样，可以用来散热',
+      '长长的象牙 – 有长长的象牙，从嘴里伸出来',
+      '巨大的身体 – 身体非常大，是陆地上最大的动物',
+      '灰色的皮肤 – 皮肤是灰色的，很厚'
+    ],
+    funFact: '大象的鼻子有超过4万个肌肉！大象可以用鼻子做很多事情，比如摘树叶、喷水、甚至打招呼！大象的记性非常好，它们可以记住很多事情很多年！'
+  },
+  tiger: {
+    nameEnglish: 'Tiger',
+    nameChinese: '老虎',
+    pronunciation: '/ˈtaɪɡər/',
+    note: '橙色条纹 + 强壮身体 + 凶猛 = 老虎',
+    recognitionFeatures: [
+      '橙色和黑色条纹 – 身上有橙色的毛和黑色的条纹，每只老虎的条纹都不一样',
+      '强壮的身体 – 身体很强壮，肌肉发达',
+      '锋利的牙齿和爪子 – 有锋利的牙齿和爪子，用来捕猎',
+      '长长的尾巴 – 尾巴很长，帮助保持平衡',
+      '凶猛的面容 – 看起来很威武，是森林之王'
+    ],
+    funFact: '老虎是最大的猫科动物！每只老虎的条纹都是独一无二的，就像人类的指纹一样！老虎游泳很好，它们喜欢在水里玩耍和捕猎！'
+  },
+  giraffe: {
+    nameEnglish: 'Giraffe',
+    nameChinese: '长颈鹿',
+    pronunciation: '/dʒɪˈræf/',
+    note: '超长脖子 + 斑点 + 长腿 = 长颈鹿',
+    recognitionFeatures: [
+      '超长的脖子 – 脖子非常非常长，是所有动物中最长的',
+      '斑点图案 – 身上有棕色和黄色的斑点，每只长颈鹿的斑点都不一样',
+      '长长的腿 – 腿也非常长，可以跑得很快',
+      '小小的角 – 头上有两个小角，被毛覆盖',
+      '长舌头 – 舌头很长，可以用来吃树上的叶子'
+    ],
+    funFact: '长颈鹿的脖子有7节骨头，和人类一样多！但是每节骨头都非常长！长颈鹿是地球上最高的动物，可以长到6米高，比两层楼还高！'
+  },
+  monkey: {
+    nameEnglish: 'Monkey',
+    nameChinese: '猴子',
+    pronunciation: '/ˈmʌŋki/',
+    note: '长尾巴 + 灵活手脚 + 聪明 = 猴子',
+    recognitionFeatures: [
+      '灵活的身体 – 身体非常灵活，可以在树上跳来跳去',
+      '长长的尾巴 – 有些猴子有长尾巴，可以用来抓住树枝',
+      '聪明的眼睛 – 眼睛很聪明，会观察和模仿',
+      '灵活的手脚 – 手脚都很灵活，可以抓东西',
+      '毛茸茸的身体 – 身上有毛，有不同的颜色'
+    ],
+    funFact: '猴子非常聪明！它们会使用工具，比如用石头敲开坚果！猴子是群居动物，它们生活在群体里，会互相帮助和照顾！有些猴子会游泳！'
+  },
+  zebra: {
+    nameEnglish: 'Zebra',
+    nameChinese: '斑马',
+    pronunciation: '/ˈziːbrə/',
+    note: '黑白条纹 + 像马 + 群居 = 斑马',
+    recognitionFeatures: [
+      '黑白条纹 – 身上有黑白相间的条纹，每只斑马的条纹都不一样',
+      '像马的身体 – 身体形状像马，但是有条纹',
+      '长长的鬃毛 – 脖子上有直立的鬃毛',
+      '长长的尾巴 – 尾巴很长，末端有毛',
+      '群居动物 – 通常成群生活在一起'
+    ],
+    funFact: '每只斑马的条纹都是独一无二的，就像人类的指纹一样！科学家认为斑马的条纹可以帮助它们躲避蚊子的叮咬，也能迷惑捕食者！斑马跑得很快，可以达到每小时65公里的速度！'
+  },
+  bear: {
+    nameEnglish: 'Bear',
+    nameChinese: '熊',
+    pronunciation: '/bɛər/',
+    note: '大身体 + 厚毛 + 强壮 = 熊',
+    recognitionFeatures: [
+      '大大的身体 – 身体很大很强壮',
+      '厚厚的毛 – 身上有厚厚的毛，可以保暖',
+      '锋利的爪子 – 有锋利的爪子，可以用来抓东西和爬树',
+      '圆圆的耳朵 – 耳朵比较小，圆圆的',
+      '短尾巴 – 尾巴很短，几乎看不见'
+    ],
+    funFact: '熊非常强壮！它们可以站立起来，用后腿走路！有些熊会冬眠，在冬天睡觉好几个月！熊的嗅觉非常灵敏，可以闻到几公里外的食物！'
+  },
+  panda: {
+    nameEnglish: 'Panda',
+    nameChinese: '熊猫',
+    pronunciation: '/ˈpændə/',
+    note: '黑白颜色 + 圆身体 + 爱吃竹子 = 熊猫',
+    recognitionFeatures: [
+      '黑白颜色 – 身体是白色的，四肢和耳朵是黑色的，眼睛周围也有黑眼圈',
+      '圆润的身体 – 身体圆圆的，看起来很可爱',
+      '大大的脑袋 – 头比较大，脸圆圆的',
+      '短尾巴 – 尾巴很短，白色的',
+      '爱吃竹子 – 主要吃竹子，偶尔吃其他植物'
+    ],
+    funFact: '熊猫是中国的国宝！虽然熊猫看起来像熊，但它们其实是吃竹子的素食动物！熊猫每天要吃很多很多竹子，一天可以吃掉12-38公斤的竹子！熊猫有6根手指，其中一根是假的，用来帮助抓竹子！'
+  },
+  kangaroo: {
+    nameEnglish: 'Kangaroo',
+    nameChinese: '袋鼠',
+    pronunciation: '/ˌkæŋɡəˈruː/',
+    note: '大袋子 + 强壮后腿 + 跳跃 = 袋鼠',
+    recognitionFeatures: [
+      '胸前的袋子 – 雌性袋鼠胸前有一个袋子，用来装小袋鼠',
+      '强壮的后腿 – 后腿非常强壮，可以跳得很高很远',
+      '长长的尾巴 – 尾巴很长，可以帮助保持平衡和支撑身体',
+      '小前肢 – 前肢比较小，用来抓东西',
+      '大耳朵 – 耳朵比较大，可以听得很清楚'
+    ],
+    funFact: '袋鼠是唯一一种用跳跃作为主要移动方式的哺乳动物！袋鼠可以跳得非常高，一次可以跳3米高，9米远！小袋鼠刚出生时只有2厘米长，会在妈妈的袋子里待上好几个月！'
+  },
+  penguin: {
+    nameEnglish: 'Penguin',
+    nameChinese: '企鹅',
+    pronunciation: '/ˈpɛŋɡwɪn/',
+    note: '黑白颜色 + 不会飞 + 会游泳 = 企鹅',
+    recognitionFeatures: [
+      '黑白颜色 – 身体是黑色的，肚子是白色的',
+      '不会飞 – 虽然看起来像鸟，但不会飞',
+      '会游泳 – 非常会游泳，可以在水里游得很快',
+      '直立的姿势 – 站着的时候身体是直立的',
+      '小翅膀 – 有小小的翅膀，像鳍一样，用来游泳'
+    ],
+    funFact: '企鹅是鸟类，但不会飞！它们用翅膀在水里"飞"，游泳速度可以达到每小时36公里！企鹅生活在南极，那里非常冷，但它们有厚厚的羽毛可以保暖！企鹅可以下到水下几百米深的地方抓鱼！'
   }
 }
 
@@ -605,7 +745,18 @@ export const getCardDataByImage = (imageKey) => {
     peach: 'peach',
     pineapple: 'pineapple',
     strawberry: 'strawberry',
-    watermelon: 'watermelon'
+    watermelon: 'watermelon',
+    lion: 'lion',
+    elephant: 'elephant',
+    tiger: 'tiger',
+    giraffe: 'giraffe',
+    monkey: 'monkey',
+    zebra: 'zebra',
+    bear: 'bear',
+    panda: 'panda',
+    kangaroo: 'kangaroo',
+    penguin: 'penguin',
+    flamingo: 'flamingo'
   }
   
   const cardKey = imageToCardMap[imageKey] || imageKey
