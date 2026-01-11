@@ -81,6 +81,19 @@ export const cardData = {
     ],
     funFact: '翼龙不是真正的恐龙，它们是恐龙的亲戚，但它们是会飞的爬行动物！'
   },
+  pteranodon: {
+    nameEnglish: 'Pteranodon',
+    nameChinese: '无齿翼龙',
+    pronunciation: '/təˈrænəˌdɒn/',
+    note: '会飞 + 大翅膀 + 无牙齿 = 无齿翼龙',
+    recognitionFeatures: [
+      '会飞 – 是会飞的爬行动物',
+      '大翅膀 – 翅膀非常大，可以滑翔',
+      '没有牙齿 – 嘴巴里没有牙齿',
+      '长头冠 – 头后面有一个长长的头冠'
+    ],
+    funFact: '无齿翼龙是最大的会飞爬行动物之一！它的翅膀展开有7米宽！'
+  },
   spinosaurus: {
     nameEnglish: 'Spinosaurus',
     nameChinese: '棘龙',
@@ -132,6 +145,266 @@ export const cardData = {
       '捕食者 – 是凶猛的食肉恐龙'
     ],
     funFact: '异特龙是霸王龙的祖先，它们生活在更早的时代！'
+  },
+  iguanodon: {
+    nameEnglish: 'Iguanodon',
+    nameChinese: '禽龙',
+    pronunciation: '/ɪˈɡwɑːnəˌdɒn/',
+    note: '尖尖拇指 + 强壮后腿 + 草食 = 禽龙',
+    recognitionFeatures: [
+      '尖尖的拇指 – 前肢有尖尖的拇指，用来防御',
+      '强壮的后腿 – 可以用两条腿或四条腿走路',
+      '草食性 – 喜欢吃植物',
+      '大身体 – 身体很大，是早期的草食恐龙'
+    ],
+    funFact: '禽龙是最早被发现的恐龙之一！它的名字意思是"鬣蜥的牙齿"。'
+  },
+  apatosaurus: {
+    nameEnglish: 'Apatosaurus',
+    nameChinese: '迷惑龙',
+    pronunciation: '/əˌpætəˈsɔːrəs/',
+    note: '长脖子 + 大身体 + 长尾巴 = 迷惑龙',
+    recognitionFeatures: [
+      '超长脖子 – 脖子非常长，可以够到树顶的叶子',
+      '巨大的身体 – 身体非常庞大',
+      '长尾巴 – 尾巴很长，像鞭子一样',
+      '四足行走 – 用四条粗壮的腿支撑身体'
+    ],
+    funFact: '迷惑龙曾经也被叫做"雷龙"！它的尾巴可以发出像打雷一样的声音！'
+  },
+  parasaurolophus: {
+    nameEnglish: 'Parasaurolophus',
+    nameChinese: '副栉龙',
+    pronunciation: '/ˌpærəˌsɔːrəˈloʊfəs/',
+    note: '长管子头 + 鸭嘴 + 大身体 = 副栉龙',
+    recognitionFeatures: [
+      '长管子头冠 – 头后面有一个很长的管子状头冠',
+      '鸭嘴 – 嘴巴像鸭子一样宽扁',
+      '大身体 – 身体很大，是草食恐龙',
+      '可以用两条腿走路 – 既可以用两条腿也可以用四条腿'
+    ],
+    funFact: '副栉龙的头冠有2米长！科学家认为它可能用来发出声音，像喇叭一样！'
+  },
+  carnotaurus: {
+    nameEnglish: 'Carnotaurus',
+    nameChinese: '食肉牛龙',
+    pronunciation: '/ˌkɑːrnoʊˈtɔːrəs/',
+    note: '牛角 + 强壮身体 + 小前肢 = 食肉牛龙',
+    recognitionFeatures: [
+      '头上的角 – 头上有两个像牛角一样的突起',
+      '强壮的后腿 – 后腿非常强壮，跑得很快',
+      '小前肢 – 前肢非常小',
+      '食肉恐龙 – 是凶猛的捕食者'
+    ],
+    funFact: '食肉牛龙是跑得最快的食肉恐龙之一，可以跑得非常快！'
+  },
+  dilophosaurus: {
+    nameEnglish: 'Dilophosaurus',
+    nameChinese: '双脊龙',
+    pronunciation: '/daɪˌloʊfəˈsɔːrəs/',
+    note: '两个头冠 + 细长身体 + 小前肢 = 双脊龙',
+    recognitionFeatures: [
+      '两个头冠 – 头上有两个并排的骨冠',
+      '细长身体 – 身体比较细长',
+      '小前肢 – 前肢比较小',
+      '快速奔跑 – 跑得很快，是早期的食肉恐龙'
+    ],
+    funFact: '双脊龙是最早的大型食肉恐龙之一，生活在侏罗纪早期！'
+  },
+  therizinosaurus: {
+    nameEnglish: 'Therizinosaurus',
+    nameChinese: '镰刀龙',
+    pronunciation: '/θəˌrɪzɪnəˈsɔːrəs/',
+    note: '巨爪 + 长脖子 + 羽毛 = 镰刀龙',
+    recognitionFeatures: [
+      '巨大的爪子 – 前肢有巨大的爪子，像镰刀一样',
+      '长脖子 – 脖子很长，可以够到高处的叶子',
+      '羽毛 – 身上可能有羽毛',
+      '草食性 – 虽然看起来可怕，但其实是吃植物的'
+    ],
+    funFact: '镰刀龙的爪子是所有恐龙中最大的，每个爪子有1米长！'
+  },
+  pachycephalosaurus: {
+    nameEnglish: 'Pachycephalosaurus',
+    nameChinese: '厚头龙',
+    pronunciation: '/ˌpækɪˌsɛfələˈsɔːrəs/',
+    note: '厚头骨 + 小身体 + 两条腿 = 厚头龙',
+    recognitionFeatures: [
+      '厚头骨 – 头顶有非常厚的骨头，像头盔一样',
+      '小身体 – 身体相对较小',
+      '两条腿走路 – 用两条腿走路',
+      '头上的突起 – 头顶和鼻子周围有突起'
+    ],
+    funFact: '厚头龙可能用厚厚的头骨互相撞击，就像山羊用角顶撞一样！'
+  },
+  giganotosaurus: {
+    nameEnglish: 'Giganotosaurus',
+    nameChinese: '南方巨兽龙',
+    pronunciation: '/dʒaɪˌɡænətoʊˈsɔːrəs/',
+    note: '巨大身体 + 大嘴巴 + 强壮后腿 = 南方巨兽龙',
+    recognitionFeatures: [
+      '巨大的身体 – 是最大的食肉恐龙之一',
+      '大嘴巴 – 嘴巴很大，有很多锋利的牙齿',
+      '强壮的后腿 – 后腿非常强壮',
+      '小前肢 – 前肢比较小'
+    ],
+    funFact: '南方巨兽龙比霸王龙还要大！它是已知最大的食肉恐龙之一！'
+  },
+  deinonychus: {
+    nameEnglish: 'Deinonychus',
+    nameChinese: '恐爪龙',
+    pronunciation: '/daɪˈnɒnɪkəs/',
+    note: '大爪子 + 羽毛 + 聪明 = 恐爪龙',
+    recognitionFeatures: [
+      '可怕的爪子 – 后脚上有一个巨大的镰刀状爪子',
+      '羽毛 – 身上有羽毛，像鸟一样',
+      '聪明 – 是非常聪明的恐龙',
+      '快速奔跑 – 跑得很快，会合作捕猎'
+    ],
+    funFact: '恐爪龙的爪子有15厘米长，非常锋利，可以用来撕裂猎物！'
+  },
+  compsognathus: {
+    nameEnglish: 'Compsognathus',
+    nameChinese: '美颌龙',
+    pronunciation: '/kɒmpˈsɒɡnəθəs/',
+    note: '小身体 + 两条腿 + 长尾巴 = 美颌龙',
+    recognitionFeatures: [
+      '很小的身体 – 是最小的恐龙之一，只有火鸡那么大',
+      '两条腿走路 – 用两条腿快速奔跑',
+      '长尾巴 – 尾巴很长，帮助保持平衡',
+      '食肉恐龙 – 虽然小，但是是食肉恐龙'
+    ],
+    funFact: '美颌龙是最小的恐龙之一，只有1米长！'
+  },
+  microraptor: {
+    nameEnglish: 'Microraptor',
+    nameChinese: '小盗龙',
+    pronunciation: '/ˌmaɪkroʊˈræptər/',
+    note: '羽毛翅膀 + 四条翅膀 + 小身体 = 小盗龙',
+    recognitionFeatures: [
+      '四条翅膀 – 前后肢都有羽毛，形成四条翅膀',
+      '小身体 – 身体很小，只有鸽子那么大',
+      '羽毛 – 全身覆盖着羽毛',
+      '会滑翔 – 可能可以在树间滑翔'
+    ],
+    funFact: '小盗龙有四条翅膀！是唯一有四条翅膀的恐龙！'
+  },
+  oviraptor: {
+    nameEnglish: 'Oviraptor',
+    nameChinese: '窃蛋龙',
+    pronunciation: '/ˈoʊvɪˌræptər/',
+    note: '没有牙 + 头冠 + 两条腿 = 窃蛋龙',
+    recognitionFeatures: [
+      '没有牙齿 – 嘴巴里没有牙齿，像鸟一样',
+      '头冠 – 头上有像公鸡一样的头冠',
+      '两条腿走路 – 用两条腿快速奔跑',
+      '羽毛 – 身上有羽毛'
+    ],
+    funFact: '窃蛋龙的名字意思是"偷蛋的贼"，但后来发现它其实是在保护自己的蛋！'
+  },
+  gallimimus: {
+    nameEnglish: 'Gallimimus',
+    nameChinese: '似鸡龙',
+    pronunciation: '/ˌɡælɪˈmaɪməs/',
+    note: '长腿 + 小头 + 长尾巴 = 似鸡龙',
+    recognitionFeatures: [
+      '很长的腿 – 腿非常长，跑得很快',
+      '小脑袋 – 头很小，嘴巴像鸟一样',
+      '长尾巴 – 尾巴很长，帮助保持平衡',
+      '没有牙齿 – 嘴巴里没有牙齿'
+    ],
+    funFact: '似鸡龙是跑得最快的恐龙之一，可以跑得像鸵鸟一样快！'
+  },
+  utahraptor: {
+    nameEnglish: 'Utahraptor',
+    nameChinese: '犹他盗龙',
+    pronunciation: '/ˈjuːtəˌræptər/',
+    note: '大爪子 + 强壮身体 + 羽毛 = 犹他盗龙',
+    recognitionFeatures: [
+      '巨大的爪子 – 后脚上有巨大的镰刀状爪子',
+      '强壮的身体 – 比迅猛龙大得多',
+      '羽毛 – 身上有羽毛',
+      '聪明 – 是非常聪明的捕食者'
+    ],
+    funFact: '犹他盗龙是最大的盗龙类恐龙，比电影里的迅猛龙还要大！'
+  },
+  suchomimus: {
+    nameEnglish: 'Suchomimus',
+    nameChinese: '似鳄龙',
+    pronunciation: '/ˌsuːkoʊˈmaɪməs/',
+    note: '长嘴巴 + 大爪子 + 背帆 = 似鳄龙',
+    recognitionFeatures: [
+      '鳄鱼一样的嘴巴 – 嘴巴又长又窄，像鳄鱼一样',
+      '大爪子 – 前肢有巨大的爪子',
+      '背上的帆 – 背上有像棘龙一样的帆',
+      '会游泳 – 可以在水里捕鱼'
+    ],
+    funFact: '似鳄龙的名字意思是"像鳄鱼的"，因为它用长嘴巴在水里捕鱼！'
+  },
+  albertosaurus: {
+    nameEnglish: 'Albertosaurus',
+    nameChinese: '阿尔伯塔龙',
+    pronunciation: '/ælˌbɜːrtəˈsɔːrəs/',
+    note: '大嘴巴 + 强壮后腿 + 小前肢 = 阿尔伯塔龙',
+    recognitionFeatures: [
+      '大嘴巴 – 嘴巴很大，有很多锋利的牙齿',
+      '强壮的后腿 – 后腿强壮，可以快速奔跑',
+      '小前肢 – 前肢很小，只有两个指头',
+      '和霸王龙很像 – 看起来很像霸王龙，但是小一些'
+    ],
+    funFact: '阿尔伯塔龙是霸王龙的亲戚，但是生活在更早的时代！'
+  },
+  corythosaurus: {
+    nameEnglish: 'Corythosaurus',
+    nameChinese: '冠龙',
+    pronunciation: '/kəˌrɪθəˈsɔːrəs/',
+    note: '圆头冠 + 鸭嘴 + 大身体 = 冠龙',
+    recognitionFeatures: [
+      '圆形的头冠 – 头后面有一个像头盔一样的圆形头冠',
+      '鸭嘴 – 嘴巴像鸭子一样宽扁',
+      '大身体 – 身体很大，是草食恐龙',
+      '可以用两条腿走路 – 既可以用两条腿也可以用四条腿'
+    ],
+    funFact: '冠龙的头冠像古希腊战士的头盔！它可能用来发出声音或识别同类！'
+  },
+  protoceratops: {
+    nameEnglish: 'Protoceratops',
+    nameChinese: '原角龙',
+    pronunciation: '/ˌproʊtoʊˈsɛrəˌtɒps/',
+    note: '小颈盾 + 没有角 + 四条腿 = 原角龙',
+    recognitionFeatures: [
+      '小颈盾 – 脖子后面有一个小颈盾，但不像三角龙那么大',
+      '没有真正的角 – 没有像三角龙那样的大角',
+      '四足行走 – 用四条腿走路',
+      '草食性 – 喜欢吃植物'
+    ],
+    funFact: '原角龙是三角龙的祖先！它的名字意思是"第一个有角的脸"！'
+  },
+  maiasaura: {
+    nameEnglish: 'Maiasaura',
+    nameChinese: '慈母龙',
+    pronunciation: '/ˌmaɪəˈsɔːrə/',
+    note: '鸭嘴 + 大身体 + 照顾宝宝 = 慈母龙',
+    recognitionFeatures: [
+      '鸭嘴 – 嘴巴像鸭子一样宽扁',
+      '大身体 – 身体很大，是草食恐龙',
+      '四足行走 – 用四条腿走路',
+      '照顾宝宝 – 会照顾自己的宝宝'
+    ],
+    funFact: '慈母龙的名字意思是"好妈妈蜥蜴"，因为科学家发现它会照顾自己的宝宝！'
+  },
+  archaeopteryx: {
+    nameEnglish: 'Archaeopteryx',
+    nameChinese: '始祖鸟',
+    pronunciation: '/ˌɑːrkiˈɒptərɪks/',
+    note: '羽毛 + 翅膀 + 有牙 + 有尾 = 始祖鸟',
+    recognitionFeatures: [
+      '羽毛 – 全身覆盖着羽毛',
+      '翅膀 – 有翅膀，可能可以飞或滑翔',
+      '有牙齿 – 嘴巴里有牙齿，不像现代鸟类',
+      '长尾巴 – 尾巴很长，有羽毛'
+    ],
+    funFact: '始祖鸟是连接恐龙和鸟类的桥梁！它有恐龙的特征，也有鸟类的特征！'
   },
   apple: {
     nameEnglish: 'Apple',
@@ -296,6 +569,7 @@ export const getCardDataByImage = (imageKey) => {
     velociraptor: 'velociraptor',
     pterodactyl: 'pterodactyl',
     petrodactyl: 'pterodactyl',
+    pteranodon: 'pteranodon',
     spinosaurus: 'spinosaurus',
     spinosaurus2: 'spinosaurus',
     ankylosaurus: 'ankylosaurus',
@@ -303,6 +577,25 @@ export const getCardDataByImage = (imageKey) => {
     allosaurus: 'allosaurus',
     allosaurus2: 'allosaurus',
     iguanodon: 'iguanodon',
+    apatosaurus: 'apatosaurus',
+    parasaurolophus: 'parasaurolophus',
+    carnotaurus: 'carnotaurus',
+    dilophosaurus: 'dilophosaurus',
+    therizinosaurus: 'therizinosaurus',
+    pachycephalosaurus: 'pachycephalosaurus',
+    giganotosaurus: 'giganotosaurus',
+    deinonychus: 'deinonychus',
+    compsognathus: 'compsognathus',
+    microraptor: 'microraptor',
+    oviraptor: 'oviraptor',
+    gallimimus: 'gallimimus',
+    utahraptor: 'utahraptor',
+    suchomimus: 'suchomimus',
+    albertosaurus: 'albertosaurus',
+    corythosaurus: 'corythosaurus',
+    protoceratops: 'protoceratops',
+    maiasaura: 'maiasaura',
+    archaeopteryx: 'archaeopteryx',
     apple: 'apple',
     banana: 'banana',
     cherry: 'cherry',

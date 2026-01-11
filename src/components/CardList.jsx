@@ -7,7 +7,7 @@ const CardList = () => {
     {
       id: 1,
       title: 'Dinosaur',
-      subtitle: '10 cards',
+      subtitle: '30 cards',
       color: 'blue',
       image: 'dinosaur.png'
     },
