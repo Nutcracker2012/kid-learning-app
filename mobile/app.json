@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Kid Learning App",
+    "slug": "kid-learning-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F5E6D3"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kidlearning.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F5E6D3"
+      },
+      "package": "com.kidlearning.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ]
+  }
+}
