@@ -18,27 +18,6 @@ const VolumeUp = ({ className }) => {
   )
 }
 
-const StopIcon = ({ className }) => {
-  const iconUrl = getIconUrl('stop')
-  return (
-    <div className={`volume-up-icon ${className || ''}`}>
-      <div className="volume-up-icon-vector">
-        {iconUrl && <img alt="" src={iconUrl} />}
-      </div>
-    </div>
-  )
-}
-
-/**
- * ChevronRight Icon Component
- * Displays a right-pointing chevron icon using an SVG image
- * 
- * @param {Object} props
- * @param {string} [props.className] - Additional CSS classes to apply to the icon container
- * 
- * @example
- * <ChevronRight className="chevron-right-overlay" />
- */
 const ChevronRight = ({ className }) => {
   const iconUrl = getIconUrl('chevronRight')
   return (
@@ -69,9 +48,11 @@ const FlipCard = ({
 }) => {
   const [isFlipped, setIsFlipped] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlayingNote, setIsPlayingNote] = useState(false)
 
   const imageSrc = getImageUrl(image)
   const soundButtonIcon = getIconUrl('soundButton')
+  const volumeUpIcon = getIconUrl('volumeUp')
 
   // Get card data from config or use provided cardData
   const cardDataFromConfig = getCardDataByImage(image)
@@ -106,8 +87,8 @@ const FlipCard = ({
   }, [])
 
   const handleCardClick = (e) => {
-    // Don't flip if clicking the audio button
-    if (e.target.closest('.flip-card-audio-button')) {
+    // Don't flip if clicking the audio button or note button
+    if (e.target.closest('.flip-card-audio-button') || e.target.closest('.note-tts-button')) {
       return
     }
     setIsFlipped(!isFlipped)
@@ -120,8 +101,67 @@ const FlipCard = ({
       ttsService.stop()
       setIsPlaying(false)
     } else {
+      // Stop note audio if playing
+      if (isPlayingNote) {
+        setIsPlayingNote(false)
+      }
       playAudioSequence()
     }
+  }
+
+  const handleNoteClick = (e) => {
+    e.stopPropagation()
+    if (!data.note) return
+    
+    if (isPlayingNote) {
+      // Stop current audio
+      ttsService.stop()
+      setIsPlayingNote(false)
+    } else {
+      // Stop main audio if playing
+      if (isPlaying) {
+        setIsPlaying(false)
+      }
+      playNoteAudio()
+    }
+  }
+
+  const playNoteAudio = () => {
+    if (!data.note) return
+    
+    ttsService.initializeVoices().then(() => {
+      setIsPlayingNote(true)
+      
+      const sequence = [
+        {
+          text: data.note,
+          lang: 'zh-CN',
+          rate: 0.85,
+          pitch: 1.0,
+          pause: 0
+        }
+      ]
+      
+      ttsService.speakSequence(sequence, {
+        onEnd: () => {
+          setIsPlayingNote(false)
+        },
+        onError: (error) => {
+          console.error('TTS error:', error)
+          setIsPlayingNote(false)
+          if (!error.message.includes('not support')) {
+            alert('There was an error playing the audio. Please try again.')
+          }
+        },
+        onPlayingStateChange: (isPlaying) => {
+          setIsPlayingNote(isPlaying)
+        }
+      })
+    }).catch((error) => {
+      console.error('Failed to initialize TTS:', error)
+      alert('Text-to-speech is not available. Please use a modern browser that supports speech synthesis.')
+      setIsPlayingNote(false)
+    })
   }
 
   const playAudioSequence = () => {
@@ -147,7 +187,7 @@ const FlipCard = ({
         },
         // Step 2: Translate the object name into Chinese and say it
         {
-          text: data.nameChinese,
+          text: `中文是${data.nameChinese}。${data.nameChinese}。`,
           lang: 'zh-CN',
           rate: 0.85,
           pitch: 1.0,
@@ -155,13 +195,20 @@ const FlipCard = ({
         },
         // Step 3: Teach the child how to pronounce the English word, slowly and clearly
         {
-          text: `${data.nameEnglish}. ${data.nameEnglish}.`,
+          text: `Let's learn how to say ${data.nameEnglish}. Listen carefully: ${data.nameEnglish}. Say it with me: ${data.nameEnglish}. Great job!`,
           lang: 'en-US',
           rate: 0.7, // Slower for teaching pronunciation
           pitch: 1.15,
           pause: 1000
         },
         // Step 4: Explain how to recognize the object in a simple, kid-friendly way
+        {
+          text: `Here's how you can recognize a ${data.nameEnglish}:`,
+          lang: 'en-US',
+          rate: 0.8,
+          pitch: 1.15,
+          pause: 600
+        },
         ...data.recognitionFeatures.map((feature, index) => {
           const parts = feature.split('–')
           const label = parts[0].trim()
@@ -176,7 +223,7 @@ const FlipCard = ({
         }),
         // Step 5: End with a fun fact about the object
         {
-          text: data.funFact,
+          text: `Here's a fun fact: ${data.funFact}`,
           lang: 'zh-CN',
           rate: 0.85,
           pitch: 1.0,
@@ -258,16 +305,12 @@ const FlipCard = ({
             <button 
               className={`flip-card-audio-button ${isPlaying ? 'playing' : ''}`}
               onClick={handleAudioClick}
-              aria-label={isPlaying ? "Stop audio" : "Play audio"}
+              aria-label="Play audio"
             >
               <div className="sound-button-background">
                 {soundButtonIcon && <img alt="" src={soundButtonIcon} />}
               </div>
-              {isPlaying ? (
-                <StopIcon className="volume-up-overlay" />
-              ) : (
-                <VolumeUp className="volume-up-overlay" />
-              )}
+              <VolumeUp className="volume-up-overlay" />
             </button>
             <div className="card-info-container">
               <div className="card-name-container">
@@ -279,9 +322,29 @@ const FlipCard = ({
                 <p className="card-pronunciation-text">{data.pronunciation}</p>
               </div>
             </div>
+            {data.note && (
+              <div className="card-note-container">
+                <div className="card-note-header">
+                  <p className="card-note-label">Note:</p>
+                  {volumeUpIcon && (
+                    <button 
+                      className={`note-tts-button ${isPlayingNote ? 'playing' : ''}`}
+                      onClick={handleNoteClick}
+                      aria-label={isPlayingNote ? "Stop note audio" : "Play note audio"}
+                      type="button"
+                    >
+                      <img src={volumeUpIcon} alt="" className="note-tts-icon" />
+                    </button>
+                  )}
+                </div>
+                <p className="card-note-text">{data.note}</p>
+              </div>
+            )}
             <div className="card-note-container">
-              <p className="card-note-label">Note:</p>
-              <p className="card-note-text">{data.note || ''}</p>
+              <p className="card-note-label">识别特征:</p>
+              <div className="card-recognition-features">
+                {formatRecognitionFeatures()}
+              </div>
             </div>
             <div className="card-fun-fact-container">
               <p className="card-fun-fact-label">趣味小知识:</p>

@@ -19,6 +19,7 @@ const CARD_WIDTH = width - 40;
 export default function FlipCard({ name, imageKey }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlayingNote, setIsPlayingNote] = useState(false);
   const flipAnimation = useRef(new Animated.Value(0)).current;
 
   const cardImage = getImage(imageKey);
@@ -68,16 +69,65 @@ export default function FlipCard({ name, imageKey }) {
       speechService.stop();
       setIsPlaying(false);
     } else {
+      // Stop note audio if playing
+      if (isPlayingNote) {
+        setIsPlayingNote(false);
+      }
       playAudioSequence();
     }
+  };
+
+  const handleNotePress = () => {
+    if (!data.note) return;
+    
+    if (isPlayingNote) {
+      speechService.stop();
+      setIsPlayingNote(false);
+    } else {
+      // Stop main audio if playing
+      if (isPlaying) {
+        setIsPlaying(false);
+      }
+      playNoteAudio();
+    }
+  };
+
+  const playNoteAudio = () => {
+    if (!data.note) return;
+    
+    setIsPlayingNote(true);
+    
+    const sequenceItems = [
+      {
+        text: data.note,
+        lang: 'zh-CN',
+        rate: 0.85,
+        pitch: 1.0,
+        pause: 0,
+      },
+    ];
+    
+    speechService.speakSequence(sequenceItems, {
+      onEnd: () => {
+        setIsPlayingNote(false);
+      },
+      onError: (error) => {
+        console.error('Note speech error:', error);
+        setIsPlayingNote(false);
+      },
+      onPlayingStateChange: (isPlaying) => {
+        setIsPlayingNote(isPlaying);
+      },
+    });
   };
 
   const playAudioSequence = () => {
     setIsPlaying(true);
 
-    const sequence = [
+    // Build sequence and filter out empty text
+    const sequenceItems = [
       // English name
-      {
+      data.nameEnglish && {
         text: data.nameEnglish,
         lang: 'en-US',
         rate: 0.8,
@@ -85,7 +135,7 @@ export default function FlipCard({ name, imageKey }) {
         pause: 800,
       },
       // Chinese name
-      {
+      data.nameChinese && {
         text: data.nameChinese,
         lang: 'zh-CN',
         rate: 0.85,
@@ -93,7 +143,7 @@ export default function FlipCard({ name, imageKey }) {
         pause: 800,
       },
       // Pronunciation practice
-      {
+      data.nameEnglish && {
         text: `${data.nameEnglish}. ${data.nameEnglish}.`,
         lang: 'en-US',
         rate: 0.6,
@@ -101,32 +151,46 @@ export default function FlipCard({ name, imageKey }) {
         pause: 1000,
       },
       // Recognition features
-      ...data.recognitionFeatures.map((feature, index) => {
+      ...(data.recognitionFeatures || []).map((feature, index) => {
         const parts = feature.split('-');
         const label = parts[0]?.trim() || '';
         const description = parts[1]?.trim() || '';
-        return {
-          text: `${label}. ${description}`,
+        const text = `${label}. ${description}`.trim();
+        return text ? {
+          text,
           lang: 'zh-CN',
           rate: 0.8,
           pitch: 1.0,
           pause: index === data.recognitionFeatures.length - 1 ? 800 : 600,
-        };
+        } : null;
       }),
       // Fun fact
-      {
+      data.funFact && {
         text: data.funFact,
         lang: 'zh-CN',
         rate: 0.85,
         pitch: 1.0,
         pause: 0,
       },
-    ];
+    ].filter(item => item && item.text && item.text.trim().length > 0);
 
-    speechService.speakSequence(sequence, {
-      onEnd: () => setIsPlaying(false),
-      onError: () => setIsPlaying(false),
-      onPlayingStateChange: setIsPlaying,
+    if (sequenceItems.length === 0) {
+      console.warn('No valid text to speak');
+      setIsPlaying(false);
+      return;
+    }
+
+    speechService.speakSequence(sequenceItems, {
+      onEnd: () => {
+        setIsPlaying(false);
+      },
+      onError: (error) => {
+        console.error('Speech error:', error);
+        setIsPlaying(false);
+      },
+      onPlayingStateChange: (isPlaying) => {
+        setIsPlaying(isPlaying);
+      },
     });
   };
 
@@ -206,7 +270,16 @@ export default function FlipCard({ name, imageKey }) {
 
             {data.note && (
               <View style={styles.noteSection}>
-                <Text style={styles.noteLabel}>Note:</Text>
+                <View style={styles.noteHeader}>
+                  <Text style={styles.noteLabel}>Note:</Text>
+                  <TouchableOpacity
+                    style={[styles.noteTTSButton, isPlayingNote && styles.noteTTSButtonPlaying]}
+                    onPress={handleNotePress}
+                    activeOpacity={0.7}
+                  >
+                    <Text style={styles.noteTTSIcon}>🔊</Text>
+                  </TouchableOpacity>
+                </View>
                 <Text style={styles.noteText}>{data.note}</Text>
               </View>
             )}
@@ -352,11 +425,35 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 12,
   },
+  noteHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
   noteLabel: {
     fontSize: 14,
     fontWeight: '600',
     color: '#E65100',
-    marginBottom: 4,
+  },
+  noteTTSButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#4A90E2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  noteTTSButtonPlaying: {
+    backgroundColor: '#357ABD',
+  },
+  noteTTSIcon: {
+    fontSize: 18,
   },
   noteText: {
     fontSize: 15,

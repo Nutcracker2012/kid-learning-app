@@ -120,15 +120,10 @@
 }
 
 .card-flip-button {
-  position: var(--component-button-icon-button-position);
-  width: var(--component-button-icon-button-width);
-  height: var(--component-button-icon-button-height);
-  flex-shrink: var(--component-button-icon-button-flex-shrink);
-  border: var(--component-button-icon-button-border);
-  background: var(--component-button-icon-button-background);
-  cursor: var(--component-button-icon-button-cursor);
-  padding: var(--component-button-icon-button-padding);
-  transition: var(--component-button-icon-button-transition);
+  position: relative;
+  width: var(--dimension-icon-button-size);
+  height: var(--dimension-icon-button-size);
+  flex-shrink: 0;
   margin-left: auto;
 }
 
@@ -179,23 +174,23 @@
 }
 
 .flip-card-audio-button {
-  position: var(--component-button-icon-button-position);
-  width: var(--component-button-icon-button-width);
-  height: var(--component-button-icon-button-height);
-  flex-shrink: var(--component-button-icon-button-flex-shrink);
-  border: var(--component-button-icon-button-border);
-  background: var(--component-button-icon-button-background);
-  cursor: var(--component-button-icon-button-cursor);
-  padding: var(--component-button-icon-button-padding);
-  transition: var(--component-button-icon-button-transition);
+  position: relative;
+  width: var(--dimension-icon-button-size);
+  height: var(--dimension-icon-button-size);
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
 }
 
 .flip-card-audio-button:hover {
-  transform: var(--component-button-icon-button-hover-transform);
+  transform: scale(1.05);
 }
 
 .flip-card-audio-button.playing {
-  animation: var(--component-button-icon-button-playing-animation);
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -217,9 +212,6 @@
   max-width: none;
   width: 100%;
   height: 100%;
-  vertical-align: middle;
-  position: absolute;
-  inset: 0;
 }
 
 .volume-up-overlay {
@@ -229,8 +221,6 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
 }
 
 .card-info-container {
@@ -294,8 +284,14 @@
   max-width: 297px;
 }
 
+.card-note-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
 .card-note-label {
-  display: block;
   font-family: var(--typography-heading-compact-01-family);
   font-weight: var(--typography-heading-compact-01-weight);
   font-size: var(--typography-heading-compact-01-size);
@@ -317,8 +313,56 @@
   min-height: 27px;
 }
 
+.note-tts-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #4A90E2;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.note-tts-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.note-tts-button:active {
+  transform: scale(0.95);
+}
+
+.note-tts-button.playing {
+  background-color: #357ABD;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.note-tts-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  display: block;
+  object-fit: contain;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 .card-recognition-features {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 4px;
   width: 100%;
@@ -344,7 +388,7 @@
 }
 
 .card-fun-fact-container {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 4px;
   align-items: flex-start;
@@ -357,7 +401,6 @@
 }
 
 .card-fun-fact-label {
-  display: none;
   font-family: var(--typography-heading-compact-01-family);
   font-weight: var(--typography-heading-compact-01-weight);
   font-size: var(--typography-heading-compact-01-size);
@@ -368,7 +411,6 @@
 }
 
 .card-fun-fact-text {
-  display: none;
   font-family: var(--typography-body-compact-02-family);
   font-weight: var(--typography-body-compact-02-weight);
   font-size: var(--typography-body-compact-02-size);
@@ -388,13 +430,6 @@
   justify-content: center;
 }
 
-.volume-up-icon.volume-up-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .volume-up-icon-vector {
   position: relative;
   width: 87.44%;
@@ -406,10 +441,9 @@
 
 .volume-up-icon-vector img {
   display: block;
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  aspect-ratio: 1 / 1;
 }
 
 .chevron-right-icon {
