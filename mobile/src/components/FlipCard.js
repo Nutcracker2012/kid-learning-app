@@ -243,20 +243,13 @@ export default function FlipCard({ name, imageKey }) {
 
       {/* Back of card */}
       <Animated.View style={[styles.card, styles.cardBack, backAnimatedStyle]}>
-        <TouchableOpacity
-          style={styles.cardTouchable}
-          onPress={handleCardPress}
-          activeOpacity={0.95}
-        >
-          <View style={styles.backContent}>
-            <TouchableOpacity
-              style={[styles.audioButton, isPlaying && styles.audioButtonPlaying]}
-              onPress={handleAudioPress}
-            >
-              <View style={styles.audioButtonInner}>
-                <Text style={styles.audioIcon}>{isPlaying ? '||' : '()'}</Text>
-              </View>
-            </TouchableOpacity>
+        <View style={styles.cardWrapper}>
+          <TouchableOpacity
+            style={styles.cardTouchable}
+            onPress={handleCardPress}
+            activeOpacity={0.95}
+          >
+            <View style={styles.backContent}>
 
             <View style={styles.nameSection}>
               <Text style={styles.englishName}>{data.nameEnglish}</Text>
@@ -298,8 +291,18 @@ export default function FlipCard({ name, imageKey }) {
                 <Text style={styles.funFactText}>{data.funFact}</Text>
               </View>
             )}
-          </View>
-        </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.audioButton, isPlaying && styles.audioButtonPlaying]}
+            onPress={handleAudioPress}
+            activeOpacity={0.8}
+          >
+            <View style={styles.audioButtonInner}>
+              <Text style={styles.audioIcon}>{isPlaying ? '||' : '()'}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </Animated.View>
     </View>
   );
@@ -329,6 +332,11 @@ const styles = StyleSheet.create({
   },
   cardBack: {
     backgroundColor: '#FFF8F0',
+  },
+  cardWrapper: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
   },
   cardTouchable: {
     flex: 1,
