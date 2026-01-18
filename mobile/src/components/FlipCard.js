@@ -20,7 +20,6 @@ const CARD_WIDTH = width - 40;
 export default function FlipCard({ name, imageKey }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isPlayingNote, setIsPlayingNote] = useState(false);
   const flipAnimation = useRef(new Animated.Value(0)).current;
 
   const cardImage = getImage(imageKey);
@@ -70,56 +69,8 @@ export default function FlipCard({ name, imageKey }) {
       speechService.stop();
       setIsPlaying(false);
     } else {
-      // Stop note audio if playing
-      if (isPlayingNote) {
-        setIsPlayingNote(false);
-      }
       playAudioSequence();
     }
-  };
-
-  const handleNotePress = () => {
-    if (!data.note) return;
-    
-    if (isPlayingNote) {
-      speechService.stop();
-      setIsPlayingNote(false);
-    } else {
-      // Stop main audio if playing
-      if (isPlaying) {
-        setIsPlaying(false);
-      }
-      playNoteAudio();
-    }
-  };
-
-  const playNoteAudio = () => {
-    if (!data.note) return;
-    
-    setIsPlayingNote(true);
-    
-    const sequenceItems = [
-      {
-        text: data.note,
-        lang: 'zh-CN',
-        rate: 0.85,
-        pitch: 1.0,
-        pause: 0,
-      },
-    ];
-    
-    speechService.speakSequence(sequenceItems, {
-      onEnd: () => {
-        setIsPlayingNote(false);
-      },
-      onError: (error) => {
-        console.error('Note speech error:', error);
-        setIsPlayingNote(false);
-      },
-      onPlayingStateChange: (isPlaying) => {
-        setIsPlayingNote(isPlaying);
-      },
-    });
   };
 
   const playAudioSequence = () => {
@@ -266,20 +217,6 @@ export default function FlipCard({ name, imageKey }) {
               <View style={styles.noteSection}>
                 <View style={styles.noteHeader}>
                   <Text style={styles.noteLabel}>Note:</Text>
-                  <TouchableOpacity
-                    style={[styles.noteTTSButton, isPlayingNote && styles.noteTTSButtonPlaying]}
-                    onPress={handleNotePress}
-                    activeOpacity={0.7}
-                  >
-                    <View style={styles.noteTTSIconContainer}>
-                      <Svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <Path
-                          d="M13.4961 1.50635C13.6942 1.50635 13.8849 1.58541 14.0254 1.7251C14.1664 1.86349 14.2471 2.05194 14.25 2.24951V21.7495C14.25 21.9484 14.1709 22.1391 14.0303 22.2798C13.8896 22.4204 13.6989 22.4995 13.5 22.4995C13.4008 22.4991 13.3023 22.4795 13.2109 22.4409C13.1197 22.4023 13.0372 22.3456 12.9678 22.2749L7.25293 16.4995H2.25C2.05109 16.4995 1.86038 16.4204 1.71973 16.2798C1.57913 16.1391 1.5 15.9484 1.5 15.7495V8.24951C1.50005 8.05066 1.57912 7.85985 1.71973 7.71924C1.86037 7.57864 2.05113 7.49951 2.25 7.49951H7.25293L12.9678 1.7251C13.1083 1.58545 13.298 1.50639 13.4961 1.50635ZM8.09277 8.7749C8.02331 8.84577 7.94004 8.9023 7.84863 8.94092C7.7573 8.97947 7.6587 8.9991 7.55957 8.99951H3V14.9995H7.55957C7.65878 14.9999 7.75724 15.0205 7.84863 15.0591C7.94004 15.0977 8.02331 15.1542 8.09277 15.2251L12.75 19.9272V4.07178L8.09277 8.7749ZM20.3701 6.09033C21.7852 7.76631 22.5394 9.90131 22.4912 12.0942C22.4429 14.2874 21.5952 16.3883 20.1074 18.0005L19.0049 16.9497C20.2437 15.6063 20.9502 13.8568 20.9902 12.0298C21.0302 10.2029 20.4014 8.42421 19.2227 7.02783L20.3701 6.06006V6.09033ZM17.3252 8.03271C18.2696 9.14997 18.773 10.574 18.7412 12.0366C18.7094 13.4992 18.1444 14.8999 17.1523 15.9751L16.0498 14.9546C16.7941 14.1491 17.2192 13.0998 17.2441 12.0034C17.269 10.9068 16.8917 9.83803 16.1846 8.99951L17.3252 8.03271Z"
-                          fill="black"
-                        />
-                      </Svg>
-                    </View>
-                  </TouchableOpacity>
                 </View>
                 <Text style={styles.noteText}>{data.note}</Text>
               </View>
@@ -299,7 +236,19 @@ export default function FlipCard({ name, imageKey }) {
             activeOpacity={0.8}
           >
             <View style={styles.audioButtonInner}>
-              <Text style={styles.audioIcon}>{isPlaying ? '||' : '()'}</Text>
+              <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                {isPlaying ? (
+                  <Path
+                    d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"
+                    fill="white"
+                  />
+                ) : (
+                  <Path
+                    d="M13.4961 1.50635C13.6942 1.50635 13.8849 1.58541 14.0254 1.7251C14.1664 1.86349 14.2471 2.05194 14.25 2.24951V21.7495C14.25 21.9484 14.1709 22.1391 14.0303 22.2798C13.8896 22.4204 13.6989 22.4995 13.5 22.4995C13.4008 22.4991 13.3023 22.4795 13.2109 22.4409C13.1197 22.4023 13.0372 22.3456 12.9678 22.2749L7.25293 16.4995H2.25C2.05109 16.4995 1.86038 16.4204 1.71973 16.2798C1.57913 16.1391 1.5 15.9484 1.5 15.7495V8.24951C1.50005 8.05066 1.57912 7.85985 1.71973 7.71924C1.86037 7.57864 2.05113 7.49951 2.25 7.49951H7.25293L12.9678 1.7251C13.1083 1.58545 13.298 1.50639 13.4961 1.50635ZM8.09277 8.7749C8.02331 8.84577 7.94004 8.9023 7.84863 8.94092C7.7573 8.97947 7.6587 8.9991 7.55957 8.99951H3V14.9995H7.55957C7.65878 14.9999 7.75724 15.0205 7.84863 15.0591C7.94004 15.0977 8.02331 15.1542 8.09277 15.2251L12.75 19.9272V4.07178L8.09277 8.7749ZM20.3701 6.09033C21.7852 7.76631 22.5394 9.90131 22.4912 12.0942C22.4429 14.2874 21.5952 16.3883 20.1074 18.0005L19.0049 16.9497C20.2437 15.6063 20.9502 13.8568 20.9902 12.0298C21.0302 10.2029 20.4014 8.42421 19.2227 7.02783L20.3701 6.06006V6.09033ZM17.3252 8.03271C18.2696 9.14997 18.773 10.574 18.7412 12.0366C18.7094 13.4992 18.1444 14.8999 17.1523 15.9751L16.0498 14.9546C16.7941 14.1491 17.2192 13.0998 17.2441 12.0034C17.269 10.9068 16.8917 9.83803 16.1846 8.99951L17.3252 8.03271Z"
+                    fill="white"
+                  />
+                )}
+              </Svg>
             </View>
           </TouchableOpacity>
         </View>
@@ -410,11 +359,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  audioIcon: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#FFFFFF',
-  },
   nameSection: {
     marginTop: 50,
     marginBottom: 8,
@@ -442,32 +386,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   noteHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     marginBottom: 8,
   },
   noteLabel: {
     fontSize: 14,
     fontWeight: '600',
     color: '#E65100',
-  },
-  noteTTSButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  noteTTSButtonPlaying: {
-    opacity: 0.7,
-  },
-  noteTTSIconContainer: {
-    width: 20,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   noteText: {
     fontSize: 15,
